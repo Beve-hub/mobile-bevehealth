@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View, Animated } from 'react-native';
 import React, { useRef } from 'react';
 import { AntDesign } from '@expo/vector-icons';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { useRouter } from 'expo-router';
+
+
 
 
 interface NextButtonProps {
@@ -11,7 +11,7 @@ interface NextButtonProps {
 
 
 const NextButton: React.FC<NextButtonProps> = ({ scrollTo }) => {
-  const router = useRouter();
+
   const size = 128;
   const strokeWidth = 2;
   const center = size / 2;
@@ -55,10 +55,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     flexDirection: 'row',
-    backgroundColor: '#B40404',
+    backgroundColor: '#008C73',
     borderRadius: 40,
-    width: wp(18),
-    height: wp(18),
+    width:24,
+    height: 24,
   },
   buttonText: {
     fontSize: 18,

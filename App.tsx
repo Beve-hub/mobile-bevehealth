@@ -3,15 +3,44 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { View, StyleSheet,SafeAreaView } from 'react-native';
 import { Provider as ReduxProvider } from 'react-redux';
 import * as SplashScreen from 'expo-splash-screen';
-import { Provider as PaperProvider } from 'react-native-paper';
-import { useFonts, Inter_400Regular } from '@expo-google-fonts/inter';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { useFonts,  
+  Inter_100Thin,
+  Inter_200ExtraLight,
+  Inter_300Light,
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  Inter_800ExtraBold,
+  Inter_900Black, } from '@expo-google-fonts/inter';
 import AppNavigator from './src/navigation/AppNavigator';
 import store from './src/app/store';
+import { StatusBar } from 'expo-status-bar';
+import FlashMessage from 'react-native-flash-message';
+
+
+const theme = {
+  ...DefaultTheme,
+  myOwnProperty: true,
+  Colors: {
+     ...DefaultTheme.colors,
+     
+    },
+  }
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [fontsLoaded] = useFonts({
+    Inter_100Thin,
+    Inter_200ExtraLight,
+    Inter_300Light,
     Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Inter_800ExtraBold,
+    Inter_900Black,
   });
 
   useEffect(() => {
@@ -23,7 +52,7 @@ export default function App() {
       } catch (e) {
         console.warn(e);
       } finally {
-        setAppIsReady(true);
+        setAppIsReady(true);        
       }
     }
     prepare();
@@ -36,19 +65,26 @@ export default function App() {
   }, [appIsReady, fontsLoaded]);
 
   if (!appIsReady || !fontsLoaded) {
+    console.log("app is not ready");
     return null;
   }
 
   return (
-    <SafeAreaView>
+    <View style={styles.container} onLayout={onLayoutRootView}>
     <ReduxProvider store={store}>
-      <PaperProvider>
-        <View style={styles.container} onLayout={onLayoutRootView}>
-          <AppNavigator />
-        </View>
+      <StatusBar />
+      <PaperProvider theme={theme}>        
+          <AppNavigator />       
       </PaperProvider>
+      <FlashMessage
+          position='bottom'
+          icon='auto'
+          animated={true}
+          duration={4000}
+          floating={true}
+        />
     </ReduxProvider>
-    </SafeAreaView>
+    </View>
   );
 }
 
