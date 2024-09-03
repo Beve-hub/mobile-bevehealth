@@ -23,15 +23,15 @@ const Onboarding = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+     
         <Text style={styles.skip}>Skip</Text>
-      </View>
+      
       <FlatList
         data={slide}
         ref={SlidesRef}
-        renderItem={({ item }) => <OnboardItem item={item} />}
+        renderItem={({ item }) => <OnboardItem item={item} current={current} slideLength={slide.length} scrollTo={scrollTo} />}
         horizontal
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.to}
         showsHorizontalScrollIndicator={false}
         pagingEnabled
         bounces={false}
@@ -43,8 +43,7 @@ const Onboarding = () => {
           setCurrent(index);
         }}
       />
-      <Paginator data={slide} scrollX={scrollX} />
-      <NextButton scrollTo={scrollTo} />
+      
     </SafeAreaView>
   );
 };
@@ -60,6 +59,12 @@ const styles = StyleSheet.create({
     color: colorFamily.Primary,    
     fontWeight: 'bold',
     fontSize: 15,
-    bottom: sizing.SPACING,
+    top: 50,
+    right: sizing.SPACING,
+    zIndex: 999,
+    alignSelf: 'flex-end',
+    transform: [{ translateX: -20 }],
+    shadowColor: '#000',
+
   },
 });

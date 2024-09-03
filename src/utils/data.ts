@@ -1,5 +1,5 @@
 
-interface SlideItem {
+export interface SlideItem {
     id: number;
     image: string;
     title: string;
