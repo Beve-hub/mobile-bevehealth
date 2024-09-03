@@ -1,12 +1,16 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ImageSourcePropType } from 'react-native';
 import React from 'react'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { slide, SlideItem } from '../../utils/data';
+import { slide,} from '../../utils/data';
 import { colorFamily, fontFamily, sizing } from './../../utils/constant';
 
 interface SlideItemProps {
-    item: SlideItem;
+    item: {
+      image: ImageSourcePropType;
+      title: string;
+      desc: string;
+    };
     current: number;
     slideLength: number;
     scrollTo: () => void;
@@ -41,8 +45,8 @@ const OnboardItem = ({ item, current, slideLength, scrollTo }: SlideItemProps) =
 
       {/* Next Button */}
       <TouchableOpacity style={styles.nextButton} onPress={scrollTo}>
-        <Text style={styles.nextButtonText}>
-          {current < slideLength - 1 ? <AntDesign name="right" size={20} color="black" /> : <MaterialIcons name="check" size={24} color="black" />}
+        <Text>
+          {current < slideLength - 1 ? <AntDesign name="right" size={20} color= "#008C73" /> : <MaterialIcons name="check" size={24} color= "#008C73" />}
         </Text>
       </TouchableOpacity>
         </View>
@@ -103,8 +107,8 @@ const styles = StyleSheet.create({
       marginBottom: 20,
     },
     dot: {
-      height: 8,
-      width: 8,
+      height: 6,
+      width: 6,
       borderRadius: 5,
       marginHorizontal: 5,
     },
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
       display: 'flex',
       alignItems: 'center',
       paddingVertical: 10,      
-      marginLeft: 20,
+      marginLeft: 10,
       width:50,
       height:50,
       borderRadius: 30,

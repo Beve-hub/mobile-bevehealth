@@ -1,10 +1,9 @@
 import {SafeAreaView, FlatList, StyleSheet, View, Animated, Text } from 'react-native';
 import React, { useRef, useState } from 'react';
 import { slide } from '../utils/data';
-import Paginator from './../screen/onboard/Paginator';
-import NextButton from './../screen/onboard/NextButton';
-import OnboardItem from './../screen/onboard/OnboardItem';
+
 import { colorFamily, sizing } from '../utils/constant';
+import OnboardItem from './../screen/onboard/OnboardItem';
 
 const Onboarding = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
