@@ -1,14 +1,17 @@
 import {SafeAreaView, FlatList, StyleSheet, View, Animated, Text } from 'react-native';
 import React, { useRef, useState } from 'react';
 import { slide } from '../utils/data';
-
+import { useDispatch } from 'react-redux';
+import { setFirstLaunch } from '../app/slices/authSlice';  // Adjust path as necessary
+import { useNavigation,NavigationProp } from '@react-navigation/native';
 import { colorFamily, sizing } from '../utils/constant';
 import OnboardItem from './../screen/onboard/OnboardItem';
-
+import { AuthStackParamList } from './AuthNavigator';
 const Onboarding = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const [current, setCurrent] = useState(0);
-  
+  const dispatch = useDispatch();
+  const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
   const SlidesRef = useRef<FlatList>(null);
 
   const scrollTo = () => {
@@ -16,14 +19,22 @@ const Onboarding = () => {
       SlidesRef.current.scrollToIndex({ index: current + 1 });
       setCurrent(current + 1);
     } else {
-      console.log('Last item.');
+      // Set onboarding as completed and navigate to login
+      dispatch(setFirstLaunch(false));
+      navigation.navigate('OnboardSelect');  // Adjust 'Login' to your actual route name
     }
   };
+  
 
   return (
     <SafeAreaView style={styles.container}>
      
-        <Text style={styles.skip}>Skip</Text>
+        <Text style={styles.skip}
+        onPress={() => {
+          dispatch(setFirstLaunch(false)); // Set onboarding as completed
+          navigation.navigate('OnboardSelect'); // Navigate to the login page
+        }}
+        >Skip</Text>
       
       <FlatList
         data={slide}

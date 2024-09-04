@@ -3,14 +3,14 @@ import React from 'react'
 
 type Props = {}
 
-const Chat = (props: Props) => {
+const PatDocument = (props: Props) => {
   return (
     <View>
-      <Text>Chat</Text>
+      <Text>PatDocument</Text>
     </View>
   )
 }
 
-export default Chat
+export default PatDocument
 
 const styles = StyleSheet.create({})

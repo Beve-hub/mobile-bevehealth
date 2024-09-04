@@ -3,14 +3,14 @@ import React from 'react'
 
 type Props = {}
 
-const Calender = (props: Props) => {
+const DocChat = (props: Props) => {
   return (
     <View>
-      <Text>Calender</Text>
+      <Text>DocChat</Text>
     </View>
   )
 }
 
-export default Calender
+export default DocChat
 
 const styles = StyleSheet.create({})

@@ -3,14 +3,14 @@ import React from 'react'
 
 type Props = {}
 
-const Profile = (props: Props) => {
+const PatHome = (props: Props) => {
   return (
     <View>
-      <Text>Profile</Text>
+      <Text>PatHome</Text>
     </View>
   )
 }
 
-export default Profile
+export default PatHome
 
 const styles = StyleSheet.create({})

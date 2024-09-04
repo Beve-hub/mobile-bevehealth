@@ -7,6 +7,8 @@ export const sizing = {
   SPACING: 20,
   SCREEN_WIDTH: width,
   SCREEN_HEIGHT: height,
+  SCREEN_INPUT: width - 20,
+  SCREEN_BUTTON: width - 80,
   STATUSBARHEIGHT: Constants.statusBarHeight,
 };
 
@@ -26,8 +28,10 @@ export const colorFamily = {
   Primary: "#008C73",
   Secondary: "#4ECBB4",
   Color_MAIN_Text: "#121212",
+  Color_MAIN_Texting: "#12121270",
   Color_SUB_MAIN_Text: "#ffff",
   Color_Main: "#D9D9D9",
   Color_SUB: "#E0E0E0",
   Color_Red: "#FF0000",
+  Color_Transaparent: "transparent",
 };

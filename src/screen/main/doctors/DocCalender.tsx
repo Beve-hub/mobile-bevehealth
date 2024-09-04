@@ -1,14 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Login = () => {
+type Props = {}
+
+const DocCalender = (props: Props) => {
   return (
     <View>
-      <Text>Login</Text>
+      <Text>DocCalender</Text>
     </View>
   )
 }
 
-export default Login
+export default DocCalender
 
 const styles = StyleSheet.create({})
