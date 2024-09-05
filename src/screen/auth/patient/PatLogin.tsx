@@ -6,18 +6,22 @@ import CustomButtonFilled from '../../../utils/shared/CustomButtonFilled'
 import CustomInput from '../../../utils/shared/CustomInput'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { AuthStackParamList } from '../../../navigation/AuthNavigator'
+import { useDispatch } from 'react-redux'
+import { AuthStackParamList } from '../../../utils/interfer'
+import { setAuthenticated } from '../../../app/slices/authSlice'
 
 const Login = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigation<NavigationProp<AuthStackParamList>>();
   const handleSubmit = () => {
-    // Handle form submission logic here
+    dispatch(setAuthenticated({role:'patient'}))
+    navigate.navigate('BottomNavigator')
   }
   const handleForget = () => {
     navigate.navigate('ForgottenPassword')
   }
   const handleRegister = () => {
-    navigate.navigate('ResetPassword')
+    navigate.navigate('PatRegister')
   }
 
   return (

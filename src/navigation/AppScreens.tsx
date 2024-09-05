@@ -1,11 +1,6 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../screen/main/patient/PatHome';
-import BottomNavigator from './BottomNavigator';
-import Profile from '../screen/main/patient/PatProfile';
-import Chat from '../screen/main/patient/PatChat';
-import Calender from '../screen/main/patient/PatCalender';
-import Document from '../screen/main/patient/PatDocument';
+import DocBottomNavigator from './BottomNavigator';
 import DocHome from '../screen/main/doctors/DocHome';
 import DocDocument from '../screen/main/doctors/DocDocument';
 import DocCalender from '../screen/main/doctors/DocCalender';
@@ -18,6 +13,7 @@ import PatChat from '../screen/main/patient/PatChat';
 import PatProfile from '../screen/main/patient/PatProfile';
 
 
+
 const Stack = createNativeStackNavigator();
 const AppScreens = () => {
   return (
@@ -27,7 +23,7 @@ const AppScreens = () => {
       headerShadowVisible: false,
       animation: 'slide_from_right',
     }}>
-      <Stack.Screen name='BottomNavigator' component={BottomNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name='DocBottomNavigator' component={DocBottomNavigator} options={{ headerShown: false }} />
       <Stack.Screen name='DocHome' component={DocHome}/>
       <Stack.Screen name='DocDocument' component={DocDocument}/>
       <Stack.Screen name='DocCalender' component={DocCalender}/>

@@ -13,18 +13,7 @@ import CompleteDocProfile from '../screen/auth/doctor/CompleteDocProfile';
 import CompletePatProfile from '../screen/auth/patient/CompletePatProfile';
 
 
-export type AuthStackParamList = {
-  DocLogin: undefined;
-  DocRegister: undefined;
-  CompleteDocProfile: undefined;
-  PatLogin: undefined;
-  PatRegister: undefined;
-  CompletePatProfile: undefined;
-  PinScreen: undefined;
-  ResetPassword: undefined;
-  ForgottenPassword: undefined;
-  OnboardSelect: undefined; // this is the first screen in the stack, it doesn't have a name prop. It's used to determine the initial screen to render in the stack.
-};
+
 const Stack = createNativeStackNavigator();
 
 const AuthNavigator = () => {
