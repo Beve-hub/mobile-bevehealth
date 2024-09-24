@@ -1,5 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { Button } from 'react-native-paper';
 import { colorFamily } from '../constant';
 
 interface FilledButtonProps {
@@ -8,38 +9,39 @@ interface FilledButtonProps {
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
   disabled?: boolean;
+  compact?: boolean;
+  contentStyle?: ViewStyle; // For adjusting padding
 }
 
-const CustomButtonFilled = ({ title, onPress, buttonStyle, textStyle, disabled = false }: FilledButtonProps) => {
+const CustomButtonFilled = ({ title, onPress, buttonStyle, textStyle, disabled = false, compact = false, contentStyle }: FilledButtonProps) => {
   return (
-    <TouchableOpacity
-      style={[styles.button, buttonStyle, disabled && styles.disabled]}
-      onPress={onPress}    
-      activeOpacity={0.6}
+    <Button
+      mode="contained"
+      onPress={onPress}
+      disabled={disabled}
+      style={[styles.button, buttonStyle]}
+      contentStyle={[styles.content, contentStyle]} // Allows adjustment of padding
+      labelStyle={[styles.text, textStyle]}
+      compact={compact} // Adjusts size for compact variant
     >
-      <Text style={[styles.text, textStyle]}>{title}</Text>
-    </TouchableOpacity>
-  )
-}
+      {title}
+    </Button>
+  );
+};
 
-export default CustomButtonFilled
+export default CustomButtonFilled;
 
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colorFamily.Primary,
-    paddingHorizontal: 30,
-    paddingVertical: 8,
     borderRadius: 20,
-    alignItems: 'center',
   },
-  text: {     
-    textAlign: 'center',
-    lineHeight: 22,  
+  content: {
+    paddingHorizontal: 10,
+     },
+  text: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
   },
-  disabled: {
-    backgroundColor: '#9E9E9E',
-  },
-})
+});

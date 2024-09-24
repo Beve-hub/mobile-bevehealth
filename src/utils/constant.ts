@@ -5,6 +5,7 @@ const { width, height } = Dimensions.get('window');
 
 export const sizing = {
   SPACING: 20,
+  SUB_SPACING: 10,
   SCREEN_WIDTH: width,
   SCREEN_HEIGHT: height,
   SCREEN_INPUT: width - 20,
@@ -24,6 +25,19 @@ export const fontFamily = {
   Inter_900Black: 'Inter_900Black',
 };
 
+export const fontSize = {
+  small: 10,
+  Sub_small: 12,
+  medium: 14,
+  Sub_medium: 16,
+  normal: 18,
+  Sub_Normal: 20,
+  large: 24,
+  Sub_large: 28,
+  Extra_large: 32,
+  Extra_Extra_large: 48,
+};
+
 export const colorFamily = {
   Primary: "#008C73",
   Secondary: "#4ECBB4",
@@ -36,4 +50,5 @@ export const colorFamily = {
   Color_icon: "#12121210",
   Color_Transaparent: "transparent",
   Gradient_Green_Gray: ['#008C73', '#D9D9D9'],
+  Gradient_Green_Grey: ['#4ECBB4', '#D9D9D9'],
 };
