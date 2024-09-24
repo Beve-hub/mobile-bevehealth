@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface AuthState {
     isAuthenticated: boolean;
     isFirstLaunch: boolean;
-    role: 'patient' | 'professional' | 'admin' | 'nurse' | null;
+    role: 'patient' | 'professional'  | null;
 }
 
 const initialState: AuthState = {

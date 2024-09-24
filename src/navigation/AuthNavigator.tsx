@@ -14,6 +14,20 @@ import CompletePatProfile from '../screen/auth/patient/CompletePatProfile';
 
 
 
+
+export type AuthStackParamList = {
+  OnboardSelect: undefined;
+  DocLogin: undefined;
+  DocRegister: undefined;
+  CompleteDocProfile: undefined;
+  PatLogin: undefined;
+  PatRegister: undefined;
+  CompletePatProfile: undefined;
+  PinScreen: undefined;
+  ResetPassword: undefined;
+  ForgottenPassword: undefined;
+};
+
 const Stack = createNativeStackNavigator();
 
 const AuthNavigator = () => {

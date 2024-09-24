@@ -33,5 +33,7 @@ export const colorFamily = {
   Color_Main: "#D9D9D9",
   Color_SUB: "#E0E0E0",
   Color_Red: "#FF0000",
+  Color_icon: "#12121210",
   Color_Transaparent: "transparent",
+  Gradient_Green_Gray: ['#008C73', '#D9D9D9'],
 };
