@@ -6,6 +6,7 @@ const { width, height } = Dimensions.get('window');
 export const sizing = {
   SPACING: 20,
   SUB_SPACING: 10,
+  MINI_SPACING: 5,
   SCREEN_WIDTH: width,
   SCREEN_HEIGHT: height,
   SCREEN_INPUT: width - 20,
@@ -41,6 +42,7 @@ export const fontSize = {
 export const colorFamily = {
   Primary: "#008C73",
   Secondary: "#4ECBB4",
+  SUb_Secondary: "#4ECBB460",
   Color_MAIN_Text: "#121212",
   Color_MAIN_Texting: "#12121270",
   Color_SUB_MAIN_Text: "#ffff",

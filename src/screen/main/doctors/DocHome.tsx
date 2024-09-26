@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -7,58 +7,102 @@ import { colorFamily, fontFamily, fontSize, sizing } from '../../../utils/consta
 import CustomButtonFilled from '../../../utils/shared/CustomButtonFilled';
 import { useNavigation } from '@react-navigation/native';
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
-
+import AntDesign from '@expo/vector-icons/AntDesign';
+import CustomCalendar from '../../../utils/shared/CustomCalendar';
+import CustomGraph from '../../../utils/shared/CustomGraph';
 
 type Props = {}
 
+const data = [
+  {
+    name: 'David D',
+    date: '2022/03/10',
+    reason: 'DNA Test',
+    time: '10:00 AM ',
+    status: 'confirm'
+  },
+  {
+    name: 'David D',
+    date: '2022/03/10',
+    reason: 'DNA Test',
+    time: '10:00 AM ',
+    status: 'confirm'
+  },
+  {
+    name: 'David D',
+    date: '2022/03/10',
+    reason: 'DNA Test',
+    time: '10:00 AM ',
+    status: 'confirm'
+  },
+  {
+    name: 'David D',
+    date: '2022/03/10',
+    reason: 'DNA Test',
+    time: '10:00 AM ',
+    status: 'confirm'
+  },
+  // Add more appointment data as needed
+]
+
 const DocHome = (props: Props) => {
- const navigate = useNavigation()
-  const handleSubmit = () => {  
-    navigate.navigate('#')
-  }
+  const navigate = useNavigation();
+
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <TouchableOpacity activeOpacity={0.6} style={styles.content}>
-        <View style={styles.container}>
-          <Ionicons name="notifications-sharp" size={30} color={colorFamily.Color_MAIN_Text} />
-        </View>
-      </TouchableOpacity>
-      
-      <LinearGradient
-        colors={[colorFamily.Gradient_Green_Grey[0], colorFamily.Gradient_Green_Gray[1]]} // Ensure this is an array with two valid color values
-        style={styles.gradient}
-        start={{ x: 0, y: 0 }} // Start from the left
-        end={{ x: 1, y: 0 }}
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false} // Hides the vertical scroll indicator
       >
-        <View>
-        <Text style={styles.title}>Welcome</Text>
-        <View>
-        <Text style={styles.name}>Dr.Victor Okeke</Text>
-        <Text style={styles.text}>Your health is our Priority,  stay alive</Text>
-        </View>
-        <TouchableOpacity style={styles.Button}>
-          <Text style={styles.Name}>
-            Membership ID
-          </Text>
+        <TouchableOpacity activeOpacity={0.6} style={styles.content}>
+          <View style={styles.container}>
+            <Ionicons name="notifications-sharp" size={24} color={colorFamily.Color_MAIN_Text} />
+          </View>
         </TouchableOpacity>
-        </View>
         
-      </LinearGradient>
+        <LinearGradient
+          colors={[colorFamily.Gradient_Green_Grey[0], colorFamily.Gradient_Green_Gray[1]]}
+          style={styles.gradient}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+        >
+          <View>
+            <Text style={styles.title}>Welcome</Text>
+            <View>
+              <Text style={styles.name}>Dr. Victor Okeke</Text>
+              <Text style={styles.text}>Your health is our Priority, stay alive</Text>
+            </View>
+            <TouchableOpacity style={styles.Button}>
+              <Text style={styles.Name}>Membership ID</Text>
+            </TouchableOpacity>
+          </View>
+        </LinearGradient>
 
-      <View>
-        <View style={styles.document}>
-          <Text style={styles.title}>Documemt</Text>
-          <TouchableOpacity activeOpacity={0.6}>
-            <Text style={styles.all}>See All</Text>
+        <View>
+          <View style={styles.document}>
+            <Text style={styles.title}>Document</Text>
+            <TouchableOpacity activeOpacity={0.6}>
+              <Text style={styles.all}>See All</Text>
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity style={styles.buttonContainer}>
+            <View style={styles.DocContainer}>
+              <SimpleLineIcons name="folder" size={24} color="black" />
+              <View>
+                <Text>Okeke V</Text>
+                <Text>DNA Test</Text>
+              </View>
+            </View>      
+            <View style={styles.download}>
+              <AntDesign name="download" size={24} color="black" />
+            </View>    
           </TouchableOpacity>
         </View>
-        <View style={styles.buttonContainer}>
-          <View>
-          <SimpleLineIcons name="folder" size={24} color="black" />
-          </View>
-          <View></View>
-        </View>
-      </View>
+
+        <CustomCalendar />
+        <CustomGraph />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -68,65 +112,93 @@ export default DocHome;
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    padding: sizing.SPACING,
+    paddingHorizontal: sizing.SPACING,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    paddingBottom: sizing.SPACING, // Optional: Add bottom padding
   },
   content: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
+    marginVertical: sizing.SPACING,
+
   },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 50,
     padding: 4,
-    backgroundColor: colorFamily.Color_icon,
-    width: 40,
+    backgroundColor: colorFamily.Color_icon,    
   },
   gradient: {    
     justifyContent: 'center',
     alignItems: 'center',
     padding: sizing.SPACING,
-    borderRadius: 10, // Optional: Add a borderRadius to style the gradient
+    borderRadius: 10,
   },
   title: {
     color: colorFamily.Color_MAIN_Text,
     fontFamily: fontFamily.Inter_600SemiBold,
-    fontSize: fontSize.normal
+    fontSize: fontSize.normal,
   },
   name: {
     color: colorFamily.Color_MAIN_Text,
     fontFamily: fontFamily.Inter_800ExtraBold,
-    fontSize: fontSize.Sub_Normal
+    fontSize: fontSize.Sub_Normal,
   },
   text: {
     color: colorFamily.Color_MAIN_Text,
     fontFamily: fontFamily.Inter_400Regular,
-    fontSize: fontSize.medium
+    fontSize: fontSize.medium,
   },
-  Button:{
+  Button: {
     backgroundColor: colorFamily.Primary,
     paddingHorizontal: sizing.SUB_SPACING,
     paddingVertical: 10,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 5, // Add shadow to button
+    elevation: 5,
     borderRadius: 10,
     marginTop: sizing.SPACING,   
-    color: colorFamily.Color_SUB_MAIN_Text
+    color: colorFamily.Color_SUB_MAIN_Text,
   },
- Name:{
-    color: colorFamily.Color_SUB_MAIN_Text   
+  Name: {
+    color: colorFamily.Color_SUB_MAIN_Text,
   },
   document: {
     flexDirection: 'row',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: sizing.SPACING,
-    marginBottom: sizing.SPACING * 2,
   },
   all: {
     color: colorFamily.Primary,    
-  }
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent:'space-between',
+    marginBottom: sizing.SUB_SPACING ,
+    alignItems:'center',  
+    backgroundColor: colorFamily.Color_Main,
+    borderRadius: 10,
+    shadowColor: '#000',
+    padding: sizing.SPACING
+  },
+  DocContainer: {
+    flexDirection: 'row',      
+    alignItems: 'center',
+    gap: sizing.SUB_SPACING,  
+  },
+  download: {
+    marginLeft: sizing.SUB_SPACING,
+    backgroundColor: colorFamily.SUb_Secondary,
+    padding: 5,    
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',     
+    gap: sizing.SUB_SPACING,  
+  } 
 });
