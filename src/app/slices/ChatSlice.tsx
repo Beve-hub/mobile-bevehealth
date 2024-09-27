@@ -45,7 +45,10 @@ const chatSlice = createSlice({
     setSelectUser: (state, action: PayloadAction<string>) => {
       state.selectedUser = action.payload;
     },
-    setSendMessage: (state, action: PayloadAction<{userId: string; message: {type:'text' | 'image' | 'audio'; content: string; sender: 'user' | 'receiver'}}>) => {
+    setSendMessage: (
+      state,
+      action: PayloadAction<{ userId: string; message: { type: 'text' | 'image' | 'audio'; content: string; sender: 'user' | 'receiver' } }>
+    ) => {
       const { userId, message } = action.payload;
       if (!state.messages[userId]) {
         state.messages[userId] = [];

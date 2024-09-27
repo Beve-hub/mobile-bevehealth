@@ -3,7 +3,7 @@ import { BottomNavigation, useTheme } from 'react-native-paper';
 import { View, Animated, StyleSheet } from 'react-native';
 import DocHome from '../screen/main/doctors/DocHome';
 import DocDocument from '../screen/main/doctors/DocDocument';
-import DocChat from '../screen/main/doctors/DocChat';
+import DocChat from '../utils/shared/CustomChat';
 import DocCalender from '../screen/main/doctors/DocCalender';
 import DocProfile from '../screen/main/doctors/DocProfile';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';

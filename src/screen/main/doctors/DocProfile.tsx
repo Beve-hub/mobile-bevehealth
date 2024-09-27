@@ -120,7 +120,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent:'space-between',
     alignItems: 'center',
-    gap: sizing.SUB_SPACING
+    gap: sizing.SUB_SPACING,
+    fontFamily: fontFamily.Inter_600SemiBold,
+    fontSize: fontSize.Sub_medium,
   },
   icon: {
     flexDirection: 'row',
