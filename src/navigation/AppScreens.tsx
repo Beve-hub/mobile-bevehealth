@@ -36,7 +36,7 @@ const AppScreens = () => {
       <Stack.Screen name='PatCalender' component={PatCalender}/>
       <Stack.Screen name='PatChat' component={PatChat}/>
       <Stack.Screen name='PatProfile' component={PatProfile}/>
-      <Stack.Screen name='ChatBox' component={ChatBox}/>
+      <Stack.Screen name='ChatBox' component={ChatBox} options={{ headerShown: false }}/>
       
     </Stack.Navigator>
   )
