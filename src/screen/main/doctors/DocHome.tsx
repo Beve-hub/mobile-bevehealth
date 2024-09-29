@@ -10,6 +10,7 @@ import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import CustomCalendar from '../../../utils/shared/CustomCalendar';
 import CustomGraph from '../../../utils/shared/CustomGraph';
+import CustomPie from '../../../utils/shared/CustomPie';
 
 type Props = {}
 
@@ -86,21 +87,55 @@ const DocHome = (props: Props) => {
               <Text style={styles.all}>See All</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.buttonContainer}>
+          {data.slice(0,1).map((item, index) => (
+            <TouchableOpacity key={index} style={styles.buttonContainer}>
             <View style={styles.DocContainer}>
               <SimpleLineIcons name="folder" size={24} color="black" />
               <View>
-                <Text>Okeke V</Text>
-                <Text>DNA Test</Text>
+                <Text>{item.name}</Text>
+                <Text>{item.reason}</Text>
               </View>
             </View>      
             <View style={styles.download}>
               <AntDesign name="download" size={24} color="black" />
             </View>    
           </TouchableOpacity>
+          ))}
+          
         </View>
 
-        <CustomCalendar />
+        
+        <View>
+          <View style={styles.document}>
+            <Text style={styles.title}>Appointment</Text>
+            <TouchableOpacity activeOpacity={0.6}>
+              <Text style={styles.all}>See All</Text>
+            </TouchableOpacity>
+          </View>
+
+          <CustomCalendar/>
+
+          {data.slice(0,1).map((item, index) => (
+            <TouchableOpacity key={index} style={styles.buttonContainer}>
+            <View style={styles.DocContainer}>             
+              <View>
+                <Text style={styles.titles}>{item.name}</Text>
+                <Text style={styles.reason}>{item.reason}</Text>
+              </View>
+            </View>      
+            <View style={styles.location}>
+            <Text style={styles.status}>{item.status}</Text>
+              <View style={styles.data}>
+                <Text style={styles.time}>{item.time}</Text>
+                <Text style={styles.date}>{item.date}</Text>
+              </View>
+            </View>    
+          </TouchableOpacity>
+          ))}
+          
+        </View>
+        <CustomPie/>
+       
         <CustomGraph />
       </ScrollView>
     </SafeAreaView>
@@ -200,5 +235,36 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',     
     gap: sizing.SUB_SPACING,  
-  } 
+  },
+  location:{
+    flexDirection: 'column',
+    justifyContent:'flex-end',
+    alignItems:'flex-end',
+  },
+  titles: {
+    fontFamily: fontFamily.Inter_500Medium,
+    fontSize: fontSize.medium,    
+  },
+  reason: {
+    fontFamily: fontFamily.Inter_400Regular,
+    fontSize: fontSize.Sub_small
+  },
+  time: {
+    fontFamily: fontFamily.Inter_400Regular,
+    fontSize: fontSize.Sub_small
+  },
+  date: {
+    fontFamily: fontFamily.Inter_400Regular,
+    fontSize: fontSize.Sub_small
+  }, 
+  data:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    gap: sizing.SUB_SPACING
+  },
+  status: {
+    fontFamily: fontFamily.Inter_400Regular,
+    fontSize: fontSize.Sub_small,
+    color: colorFamily.Primary,
+  },
 });

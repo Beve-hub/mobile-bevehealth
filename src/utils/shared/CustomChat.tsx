@@ -45,7 +45,8 @@ const CustomChat: React.FC = () => {
               {/* Search input */}
               <View style={styles.searchContainer}>
         {/* Search Icon */}
-        <Text style={styles.searchIcon}><AntDesign name="search1" size={20} color={colorFamily.Color_MAIN_Texting} /></Text>
+        <Text style={styles.searchIcon}>
+          <AntDesign name="search1" size={20} color={colorFamily.Color_MAIN_Texting} /></Text>
         
         {/* Search input */}
         <TextInput
@@ -154,8 +155,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   initials: {
-    color: colorFamily.Color_Main,
-    fontSize: fontSize.large,
+    color: colorFamily.Color_MAIN_Text,
+    fontSize: fontSize.Sub_medium,
   },
   userName: {
     fontSize: fontSize.medium,

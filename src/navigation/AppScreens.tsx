@@ -29,7 +29,7 @@ const AppScreens = () => {
       <Stack.Screen name='DocHome' component={DocHome}/>
       <Stack.Screen name='DocDocument' component={DocDocument}/>
       <Stack.Screen name='DocCalender' component={DocCalender}/>
-      <Stack.Screen name='Chat' component={CustomChat} />
+      <Stack.Screen name='CustomChat' component={CustomChat} />
       <Stack.Screen name='DocProfile' component={DocProfile}/>
       <Stack.Screen name='PatHome' component={PatHome}/>
       <Stack.Screen name='PatDocument' component={PatDocument}/>

@@ -14,6 +14,7 @@ const initialState: ChatStateType = {
     "Dr. John": [
       { type: 'text', content: 'Hello, nice to meet you', sender: 'receiver' },
       { type: 'text', content: 'Hi, how are you?', sender: 'user' },
+      { type: 'text', content: 'Hi, how are you? jesus loves you and he will like to keep his commandment with you all the days of your life', sender: 'user' },
       { type: 'image', content: 'path_to_image.jpg', sender: 'receiver' },
       { type: 'image', content: 'path_to_image.jpg', sender: 'user' },
       { type: 'audio', content: 'path_to_audio.mp3', sender: 'user' },

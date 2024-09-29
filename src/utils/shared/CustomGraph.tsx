@@ -15,7 +15,7 @@ const data = [
 
 const CustomGraph = () => {
   return (
-    <View style={styles.container}>
+    <View >
       <Text style={styles.title}>Analysis</Text>
       <BarChart 
         data={data}
@@ -35,9 +35,7 @@ const CustomGraph = () => {
 export default CustomGraph;
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
+  
   title: {
     fontSize: fontSize.Sub_medium,
     marginBottom: 16,    
