@@ -10,6 +10,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Feather from '@expo/vector-icons/Feather';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation for navigation
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigation/RootStack';
 
 interface MessageType {
   type: 'text' | 'image' | 'audio';
@@ -21,7 +23,8 @@ const ChatBox: React.FC = () => {
   const [inputText, setInputText] = useState<string>(''); 
   const [mediaSelected, setMediaSelected] = useState<boolean>(false); 
 
-  const navigation = useNavigation(); // Initialize navigation
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+ // Initialize navigation
   const selectedUser = useSelector((state: RootState) => state.chat.selectedUser);
   const messages = useSelector((state: RootState) =>
     selectedUser ? state.chat.messages[selectedUser] || [] : []
@@ -53,12 +56,12 @@ const ChatBox: React.FC = () => {
             </View>
           </View>
           <View style={styles.headerIcons}>
-            <TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate('Video')}>
               <View style={styles.icon}>
                 <FontAwesome name="video-camera" size={20} color="black" />
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate('Call')}>
               <View style={styles.icon}>
                 <MaterialIcons name="call" size={20} color="black" />
               </View>

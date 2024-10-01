@@ -14,6 +14,9 @@ import CustomChat from './../utils/shared/CustomChat';
 import ChatBox from '../utils/shared/ChatBox';
 import CustomBookings from '../utils/shared/CustomBookings';
 import { RootStackParamList } from './RootStack';
+import CustomCall from '../utils/shared/CustomCall';
+import CustomVideo from '../utils/shared/CustomVideo';
+import PatientDetails from '../screen/main/doctors/PatientDetails';
 
 // Use the type in your Stack.Navigator
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -41,6 +44,9 @@ const AppScreens = () => {
       <Stack.Screen name="PatProfile" component={PatProfile} />
       <Stack.Screen name="ChatBox" component={ChatBox} options={{ headerShown: false }} />
       <Stack.Screen name="BookSession" component={CustomBookings} options={{ headerShown: false }} />
+      <Stack.Screen name="Call" component={CustomCall} options={{ headerShown: false }} />
+      <Stack.Screen name="Video" component={CustomVideo} options={{ headerShown: false }} />
+      <Stack.Screen name="PatDetails" component={PatientDetails} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };

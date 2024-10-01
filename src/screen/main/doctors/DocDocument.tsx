@@ -3,6 +3,9 @@ import React from 'react'
 import { colorFamily, fontFamily, fontSize, sizing } from '../../../utils/constant'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../navigation/RootStack';
 
 type Props = {}
 
@@ -15,21 +18,21 @@ const data = [
     status: 'confirm'
   },
   {
-    name: 'David D',
+    name: 'John D',
     date: '2022/03/10',
     reason: 'DNA Test',
     time: '10:00 AM ',
     status: 'confirm'
   },
   {
-    name: 'David D',
+    name: 'Victor D',
     date: '2022/03/10',
     reason: 'DNA Test',
     time: '10:00 AM ',
     status: 'confirm'
   },
   {
-    name: 'David D',
+    name: 'Jerome D',
     date: '2022/03/10',
     reason: 'DNA Test',
     time: '10:00 AM ',
@@ -40,6 +43,11 @@ const data = [
 
 
 const DocDocument = (props: Props) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  
+  const handleCardPress = (item: any) => {
+    navigation.navigate('PatDetails', { documentData: item });
+  }
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContainer}
@@ -49,7 +57,11 @@ const DocDocument = (props: Props) => {
       <View style={styles.CardContainer}>
         
         {data.map((item, index) => (
-          <TouchableOpacity key={index} style={styles.appointment}>
+          <TouchableOpacity 
+          activeOpacity={0.6} 
+          key={index} style={styles.appointment} 
+          onPress={() => handleCardPress(item)}
+          >
             <View style={styles.DocContainer}>
             <SimpleLineIcons name="folder" size={24} color="black" />
             <View>
@@ -58,9 +70,9 @@ const DocDocument = (props: Props) => {
             </View>            
             </View>
             
-            <View style={styles.location}>
+            <TouchableOpacity activeOpacity={0.6} style={styles.location}>
             <AntDesign name="download" size={24} color="black" />
-            </View>
+            </TouchableOpacity>
            
           </TouchableOpacity>
         ))}

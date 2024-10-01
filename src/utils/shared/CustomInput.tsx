@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TextStyle, ViewStyle, Text } from 'react-native';
 import { TextInput as PaperTextInput,useTheme } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons'; // Import Expo vector icons
-import { colorFamily } from '../constant'; // Custom color family
+import { colorFamily, sizing } from '../constant'; // Custom color family
 
 interface TextInputWithIconProps {
   label?: string;
@@ -92,7 +92,7 @@ export default CustomInput;
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginVertical: 10,
+    marginVertical: sizing.SPACING,
   },
   label: {
     fontSize: 14,

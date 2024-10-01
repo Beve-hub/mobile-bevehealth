@@ -15,6 +15,9 @@ export type RootStackParamList = {
   PatProfile: undefined;
   CustomChat: undefined;
   ChatBox: undefined;
+  Call: undefined;
+  PatDetails:{ documentData: any };
+  Video: undefined;
   BookSession: { selectedDate: Date }; // Specify the route with its parameter
 };
 
