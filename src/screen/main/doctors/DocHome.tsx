@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import React from 'react';
+import { Modal, Portal, Button, Provider } from 'react-native-paper'; 
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -48,9 +49,18 @@ const data = [
 
 const DocHome = (props: Props) => {
   const navigate = useNavigation();
+  const [visible, setVisible] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState<any>(null);
+
+  const showModal = (appointment: any) => {
+    setSelectedAppointment(appointment);
+    setVisible(true);
+  };
+  const hideModal = () => setVisible(false);
 
 
   return (
+    <Provider>
     <SafeAreaView style={styles.safeArea}>
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
@@ -66,8 +76,7 @@ const DocHome = (props: Props) => {
           colors={[colorFamily.Gradient_Green_Grey[0], colorFamily.Gradient_Green_Gray[1]]}
           style={styles.gradient}
           start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-        >
+          end={{ x: 1, y: 0 }}>
           <View>
             <Text style={styles.title}>Welcome</Text>
             <View>
@@ -88,7 +97,7 @@ const DocHome = (props: Props) => {
             </TouchableOpacity>
           </View>
           {data.slice(0,1).map((item, index) => (
-            <TouchableOpacity key={index} style={styles.buttonContainer}>
+            <View key={index} style={styles.buttonContainer}>
             <View style={styles.DocContainer}>
               <SimpleLineIcons name="folder" size={24} color="black" />
               <View>
@@ -96,27 +105,26 @@ const DocHome = (props: Props) => {
                 <Text>{item.reason}</Text>
               </View>
             </View>      
-            <View style={styles.download}>
+            <TouchableOpacity activeOpacity={0.6} style={styles.download}>
               <AntDesign name="download" size={24} color="black" />
-            </View>    
-          </TouchableOpacity>
+            </TouchableOpacity>    
+          </View>
           ))}
           
         </View>
 
-        
-        <View>
-          <View style={styles.document}>
+
+        <View>          
+
+          <CustomCalendar/>
+          <View style={styles.documents}>
             <Text style={styles.title}>Appointment</Text>
             <TouchableOpacity activeOpacity={0.6}>
               <Text style={styles.all}>See All</Text>
             </TouchableOpacity>
           </View>
-
-          <CustomCalendar/>
-
           {data.slice(0,1).map((item, index) => (
-            <TouchableOpacity key={index} style={styles.buttonContainer}>
+            <TouchableOpacity key={index} style={styles.buttonContainer} onPress={() => showModal(item)}>
             <View style={styles.DocContainer}>             
               <View>
                 <Text style={styles.titles}>{item.name}</Text>
@@ -134,11 +142,40 @@ const DocHome = (props: Props) => {
           ))}
           
         </View>
+        <View style={styles.gender}>
+        <View style={styles.document}>
+            <Text style={styles.title}>Gender</Text>            
+          </View>
         <CustomPie/>
-       
+        </View>
+
+        <View style={styles.gender}>
+        <View style={styles.document}>
+            <Text style={styles.title}>Analysis</Text>            
+          </View>
         <CustomGraph />
+        </View>
+        
       </ScrollView>
+      <Portal>
+          <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.modalContainer}>
+            {selectedAppointment && (
+              <View>
+                <Text style={styles.modalTitle}>Appointment Details</Text>
+                <Text style={styles.modalText}>Name: {selectedAppointment.name}</Text>
+                <Text style={styles.modalText}>Reason: {selectedAppointment.reason}</Text>
+                <Text style={styles.modalText}>Date: {selectedAppointment.date}</Text>
+                <Text style={styles.modalText}>Time: {selectedAppointment.time}</Text>
+                <Text style={styles.modalText}>Status: {selectedAppointment.status}</Text>
+                <Button mode="contained" onPress={hideModal} style={styles.closeButton}>
+                  Close
+                </Button>
+              </View>
+            )}
+          </Modal>
+        </Portal>
     </SafeAreaView>
+    </Provider>
   );
 }
 
@@ -209,6 +246,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: sizing.SPACING,
   },
+  documents: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: sizing.SPACING *2,
+    paddingBottom: sizing.SPACING ,
+  },
   all: {
     color: colorFamily.Primary,    
   },
@@ -222,6 +266,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     padding: sizing.SPACING
   },
+
   DocContainer: {
     flexDirection: 'row',      
     alignItems: 'center',
@@ -266,5 +311,29 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.Inter_400Regular,
     fontSize: fontSize.Sub_small,
     color: colorFamily.Primary,
+  },
+  gender: {
+    marginVertical: sizing.SPACING*2,
+    marginBottom: sizing.SPACING*2,
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    padding: sizing.SPACING,
+    marginHorizontal: 20,
+    borderRadius: 10,
+  },
+  modalTitle: {
+    fontFamily: fontFamily.Inter_600SemiBold,
+    fontSize: fontSize.normal,
+    marginBottom: sizing.SUB_SPACING,
+  },
+  modalText: {
+    fontFamily: fontFamily.Inter_400Regular,
+    fontSize: fontSize.Sub_small,
+    marginBottom: sizing.SUB_SPACING,
+  },
+  closeButton: {
+    marginTop: sizing.SPACING,
+    backgroundColor: colorFamily.Primary,
   },
 });

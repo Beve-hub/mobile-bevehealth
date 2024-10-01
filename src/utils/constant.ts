@@ -44,7 +44,7 @@ export const colorFamily = {
   Secondary: "#4ECBB4",
   SUb_Secondary: "#4ECBB460",
   Color_MAIN_Text: "#121212",
-  Color_MAIN_Texting: "#12121270",
+  Color_MAIN_Texting: "#12121280",
   Color_SUB_MAIN_Text: "#ffff",
   Color_Main: "#D9D9D9",
   Color_SUB: "#E0E0E0",

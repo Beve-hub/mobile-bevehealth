@@ -58,7 +58,8 @@ const DocLogin = () => {
       <CustomButtonFilled 
       title='Sign In'       
       onPress={handleSubmit}
-      buttonStyle={{width: sizing.SCREEN_BUTTON,}}/>
+      buttonStyle={{width: sizing.SCREEN_BUTTON,paddingVertical:5,}}
+      />
    
     <View >
       <View style={styles.orText}>

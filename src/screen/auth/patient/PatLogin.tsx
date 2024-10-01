@@ -58,7 +58,7 @@ const Login = () => {
       <CustomButtonFilled 
       title='Sign in'       
       onPress={handleSubmit}
-      buttonStyle={{width: sizing.SCREEN_BUTTON, paddingVertical:10,}}/>
+      buttonStyle={{width: sizing.SCREEN_BUTTON, paddingVertical:5,}}/>
    
     <View >
       <View style={styles.orText}>

@@ -13,6 +13,7 @@ const DocProfile = (props: Props) => {
     .map((name) => name[0])
     .join('')
     .toUpperCase(); // Extract the initials from the name
+    
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContainer}

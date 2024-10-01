@@ -1,5 +1,6 @@
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Modal, Portal, Button, Provider } from 'react-native-paper'; 
+import React, { useState } from 'react'
 import { colorFamily, fontFamily, fontSize, sizing } from '../../../utils/constant'
 import CustomCalendar from '../../../utils/shared/CustomCalendar'
 
@@ -39,7 +40,16 @@ const data = [
 ]
 
 const DocCalender = (props: Props) => {
+  const [visible, setVisible] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState<any>(null);
+
+  const showModal = (appointment: any) => {
+    setSelectedAppointment(appointment);
+    setVisible(true);
+  };
+  const hideModal = () => setVisible(false);
   return (
+    <Provider>
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}>
@@ -49,7 +59,7 @@ const DocCalender = (props: Props) => {
       <View style={styles.CardContainer}>
         <Text style={styles.schedule}>Recent Schedule</Text>
         {data.map((item, index) => (
-          <View key={index} style={styles.appointment}>
+          <TouchableOpacity key={index} style={styles.appointment} onPress={() => showModal(item)}>
             <View >
             <Text style={styles.title}>{item.name}</Text>
             <Text style={styles.reason}>{item.reason}</Text>
@@ -63,11 +73,29 @@ const DocCalender = (props: Props) => {
             </View>
             </View>
            
-          </View>
+          </TouchableOpacity>
         ))}
       </View>
-      </ScrollView>      
+      </ScrollView>  
+      <Portal>
+          <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.modalContainer}>
+            {selectedAppointment && (
+              <View>
+                <Text style={styles.modalTitle}>Appointment Details</Text>
+                <Text style={styles.modalText}>Name: {selectedAppointment.name}</Text>
+                <Text style={styles.modalText}>Reason: {selectedAppointment.reason}</Text>
+                <Text style={styles.modalText}>Date: {selectedAppointment.date}</Text>
+                <Text style={styles.modalText}>Time: {selectedAppointment.time}</Text>
+                <Text style={styles.modalText}>Status: {selectedAppointment.status}</Text>
+                <Button mode="contained" onPress={hideModal} style={styles.closeButton}>
+                  Close
+                </Button>
+              </View>
+            )}
+          </Modal>
+        </Portal>    
     </SafeAreaView>
+    </Provider>
   )
 }
 
@@ -137,5 +165,25 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.Inter_500Medium,
     fontSize: fontSize.normal,    
     marginBottom: sizing.SPACING ,
-  }
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    padding: sizing.SPACING,
+    marginHorizontal: 20,
+    borderRadius: 10,
+  },
+  modalTitle: {
+    fontFamily: fontFamily.Inter_600SemiBold,
+    fontSize: fontSize.normal,
+    marginBottom: sizing.SUB_SPACING,
+  },
+  modalText: {
+    fontFamily: fontFamily.Inter_400Regular,
+    fontSize: fontSize.Sub_small,
+    marginBottom: sizing.SUB_SPACING,
+  },
+  closeButton: {
+    marginTop: sizing.SPACING,
+    backgroundColor: colorFamily.Primary,
+  },
 })

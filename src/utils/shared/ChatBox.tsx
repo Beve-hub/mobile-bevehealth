@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 20,
+    padding: sizing.SPACING,
     backgroundColor: '#f0f0f0',
   },
   avatar: {
