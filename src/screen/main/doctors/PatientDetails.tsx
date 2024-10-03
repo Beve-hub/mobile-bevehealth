@@ -1,5 +1,5 @@
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native'
-import React, { useMemo } from 'react'
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView,Modal,TextInput } from 'react-native'
+import React, { useMemo, useState } from 'react'
 import { colorFamily, fontFamily, fontSize, sizing } from '../../../utils/constant'
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -10,6 +10,11 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Fontisto from '@expo/vector-icons/Fontisto';
+import LabReport from './LabReport';
+import DocReport from './DocReport';
+import CustomInput from '../../../utils/shared/CustomInput';
+import CustomImage from '../../../utils/shared/CustomImage';
+
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 type PatientDetailsRouteProp = RouteProp<RootStackParamList, 'PatDetails'>;
@@ -51,7 +56,8 @@ const PatientDetails = () => {
     const route = useRoute<PatientDetailsRouteProp>();
     const { documentData } = route.params;
     const navigation = useNavigation<NavigationProp>();
-  
+    const [activeTab, setActiveTab] = useState('LabReport'); // Tab state
+    const [modalVisible, setModalVisible] = useState(false);
     const initials = documentData.name
       .split('')
       .map((word: string) => word.charAt(0))
@@ -69,6 +75,12 @@ const PatientDetails = () => {
 
     const randomColor = useMemo(() => getRandomColor(), []);
 
+    const handleImageUpload = (imageUri: string) => {
+      // This function is called with the image URI after selection
+      console.log('Selected image URI:', imageUri);
+      // Add logic here, such as uploading the image or storing it in state
+    };
+  
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.header}>
@@ -77,7 +89,8 @@ const PatientDetails = () => {
           </TouchableOpacity>
           <Text style={styles.title}>Patient Details</Text>
         </View>
-
+        <ScrollView contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <View style={[styles.profilePic, { backgroundColor: randomColor }]}>
             <Text style={styles.initials}>{initials}</Text>
@@ -95,7 +108,7 @@ const PatientDetails = () => {
           </View>
         </View>
 
-        <View >
+        <View style={styles.vitalsContainer}>
           <Text style={styles.vitalsTitle}>Vitals</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.vitalsScroll}>
             {vitals.map((item, index) => (
@@ -107,6 +120,67 @@ const PatientDetails = () => {
             ))}
           </ScrollView>
         </View>
+        <View >
+         
+     
+      <View style={styles.tabContainer}>
+      <TouchableOpacity 
+  onPress={() => setActiveTab('LabReport')} 
+  style={[styles.tabButton, activeTab === 'LabReport' && styles.activeTab]}>
+  <Text style={[styles.buttonTexts, activeTab === 'LabReport' && styles.activeTabText]}>
+    Lab Report
+  </Text>
+</TouchableOpacity>
+<TouchableOpacity 
+  onPress={() => setActiveTab('DoctorsReport')} 
+  style={[styles.tabButton, activeTab === 'DoctorsReport' && styles.activeTab]}>
+  <Text style={[styles.buttonTexts, activeTab === 'DoctorsReport' && styles.activeTabText]}>
+    Doctors Report
+  </Text>
+</TouchableOpacity>
+
+      </View>
+
+        {/* Footer with New Book button */}
+       <View style={styles.footer}>
+        <TouchableOpacity style={styles.buttons} onPress={() => setModalVisible(true)}>
+          <Text style={styles.buttonText}>New Book</Text>
+        </TouchableOpacity>
+      </View>
+
+
+      <View >
+        {activeTab === 'LabReport' ? (
+         <LabReport/>
+        ) : (
+          <DocReport/>
+        )}
+      </View>
+
+     
+        {/* Modal for New Book */}
+       <Modal visible={modalVisible} animationType="slide" transparent={true}>
+        <View style={styles.modalBackground}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>New Report Upload</Text>
+            <CustomInput label='Specialist Name'  />
+            <CustomInput label='Report Type'  />
+            <CustomImage label="Profile Picture" onImageUpload={handleImageUpload} />
+            <CustomInput label='Observation'  />
+            
+            <View style={styles.modalActions}>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <Text>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.modalbuttons} onPress={() => handleImageUpload}>
+                <Text style={styles.modalbuttonText}>Upload</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+        </View>
+        </ScrollView>
       </SafeAreaView>
     );
 }
@@ -133,6 +207,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: sizing.SPACING,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    paddingBottom: sizing.SPACING, // Optional: Add bottom padding
   },
   profilePic: {
     width: 100,
@@ -200,7 +278,7 @@ const styles = StyleSheet.create({
     marginBottom: sizing.MINI_SPACING,
   },
   vitalTitle: {
-    fontSize: fontSize.medium,
+    fontSize: fontSize.Sub_small,
     fontFamily: fontFamily.Inter_400Regular,
     color: colorFamily.Color_MAIN_Texting,
   },
@@ -209,5 +287,101 @@ const styles = StyleSheet.create({
     color: colorFamily.Color_MAIN_Text,
     fontFamily: fontFamily.Inter_500Medium,
   },
+  tabContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: sizing.SPACING,
+  },
+  tabButton: {
+    flex: 1,
+    padding: sizing.SUB_SPACING,
+    alignItems: 'center',
+  },
+  activeTab: {
+    backgroundColor:colorFamily.Primary, 
+    color: colorFamily.Color_SUB_MAIN_Text, 
+    borderRadius:sizing.SUB_SPACING   
+  },
  
+  modalBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContainer: {
+    margin: 20,
+    backgroundColor: 'white',
+    padding: sizing.SPACING,
+    borderRadius: 10,
+  },
+  modalTitle: {
+    fontFamily: fontFamily.Inter_700Bold,
+    fontSize: fontSize.normal,
+    marginBottom: sizing.SPACING,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: colorFamily.Color_Main,
+    padding: sizing.SUB_SPACING,
+    marginBottom: sizing.SPACING,
+    borderRadius: 5,
+  },
+  modalActions: {
+    flexDirection: 'row',
+    gap: sizing.SUB_SPACING,
+     justifyContent: 'space-between',
+     alignItems: 'center'
+  },
+  activeTabText: {
+    color: 'white',  // Set text color to white
+  },
+  button: {
+    backgroundColor:colorFamily.Primary, 
+    padding: sizing.MINI_SPACING,
+    borderRadius: 5,
+    
+  },
+  buttons: {
+    backgroundColor:colorFamily.Primary, 
+    padding: sizing.MINI_SPACING,
+    borderRadius: 5,
+    
+  },
+  buttonText: {
+    color: colorFamily.Color_SUB_MAIN_Text, 
+    fontSize: fontSize.medium
+  },
+  buttonTexts: {
+    color: colorFamily.Primary, 
+    fontSize: fontSize.medium
+  },
+  modalbuttons: {
+    fontSize: fontSize.medium,
+    backgroundColor: colorFamily.Primary,
+    padding: sizing.SUB_SPACING,
+    borderRadius: 5,
+    marginTop: sizing.SUB_SPACING,
+    marginBottom: sizing.SUB_SPACING,
+    marginLeft: sizing.MINI_SPACING,
+    width: '45%',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+ 
+
+  modalbuttonText: {
+    color: colorFamily.Color_SUB_MAIN_Text, 
+    fontSize: fontSize.medium,
+    textAlign:'center'
+  },
+  footer:{
+    marginVertical: sizing.SUB_SPACING,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  }, 
+  vitalsContainer: {
+    marginBottom: sizing.SPACING,
+   
+  }
 });
