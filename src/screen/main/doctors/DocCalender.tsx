@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     padding: sizing.SPACING,
+    height:sizing.SCREEN_HEIGHT
   },
   scrollContainer: {
     flexGrow: 1,
