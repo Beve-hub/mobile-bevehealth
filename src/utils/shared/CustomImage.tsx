@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
-import { Button, Text, useTheme } from 'react-native-paper';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { TextInput, useTheme } from 'react-native-paper';
 
 type CustomImageProps = {
   label: string;
   onImageUpload: (uri: string) => void;
+  showButton?: boolean; // Prop to control the visibility of the button
 };
 
-const CustomImage: React.FC<CustomImageProps> = ({ label, onImageUpload }) => {
+const CustomImage: React.FC<CustomImageProps> = ({ label, onImageUpload, showButton = true }) => {
   const [imageUri, setImageUri] = useState<string | null>(null);
   const theme = useTheme();
 
@@ -29,17 +30,17 @@ const CustomImage: React.FC<CustomImageProps> = ({ label, onImageUpload }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.label, { color: theme.colors.primary }]}>{label}</Text>
-      <TouchableOpacity onPress={handleImagePick} style={styles.imageContainer}>
-        {imageUri ? (
-          <Image source={{ uri: imageUri }} style={styles.image} />
-        ) : (
-          <Text>Select an image</Text>
-        )}
+      <Text style={styles.label}>{label}</Text>
+
+      {/* Show the image URI or select image option */}
+      <TouchableOpacity onPress={handleImagePick} style={styles.inputField}>
+        <TextInput
+          mode="outlined"
+          value={imageUri ? imageUri.split('/').pop() : ''}
+          editable={false} // Makes the input non-editable
+          onPress={handleImagePick}
+        />
       </TouchableOpacity>
-      <Button mode="contained" onPress={handleImagePick} style={styles.button}>
-        Upload Image
-      </Button>
     </View>
   );
 };
@@ -48,28 +49,13 @@ export default CustomImage;
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: 10,
   },
   label: {
-    fontSize: 16,
     marginBottom: 10,
   },
-  imageContainer: {
-    width: 150,
-    height: 150,
-    borderRadius: 10,
-    backgroundColor: '#f0f0f0',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  image: {
+  inputField: {
     width: '100%',
-    height: '100%',
-    borderRadius: 10,
   },
-  button: {
-    marginTop: 10,
-  },
+  
 });
