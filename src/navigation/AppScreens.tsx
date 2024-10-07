@@ -31,7 +31,7 @@ const AppScreens = () => {
         animation: 'slide_from_right',
       }}
     >
-      <Stack.Screen name="DocBottomNavigator" component={DocBottomNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="BottomNavigator" component={DocBottomNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="DocHome" component={DocHome} />
       <Stack.Screen name="DocDocument" component={DocDocument} />
       <Stack.Screen name="DocCalender" component={DocCalender} />

@@ -8,14 +8,8 @@ import { AuthStackParamList } from '../../navigation/AuthNavigator';
 
 const OnboardSelect = () => {
     const navigate = useNavigation<NavigationProp<AuthStackParamList>>();
-
-    const handleStaff = () => {
-        navigate.navigate('DocLogin');
-    };
-
-    const handlePatient = () => {
-        navigate.navigate('PatLogin');
-    };
+  
+  
 
     return (
         <SafeAreaView style={styles.container}>
@@ -28,13 +22,15 @@ const OnboardSelect = () => {
                 <View style={styles.button}>
                     <CustomButtonFilled 
                         title='Patient'
-                        onPress={handlePatient}  
+                        onPress={() => navigate.navigate('Login')}  
                         buttonStyle={{ width: 130 }} 
                     />
-                    <CustomeButtonOutline
+                    <CustomButtonFilled 
                         title='Staff'
-                        onPress={handleStaff}   
+                        onPress={() => navigate.navigate('DocLogin')}   
                         buttonStyle={{ width: 140 }} 
+                        backgroundColor= {colorFamily.Color_Main}
+                        textColor={colorFamily.Color_MAIN_Text}
                     />
                 </View>
             </View>

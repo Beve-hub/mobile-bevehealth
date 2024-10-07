@@ -27,7 +27,7 @@ const CustomImage: React.FC<CustomImageProps> = ({ label, onImageUpload, showBut
       onImageUpload(selectedImageUri);
     }
   };
-
+  
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>

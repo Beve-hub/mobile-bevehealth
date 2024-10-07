@@ -3,7 +3,10 @@ import React from 'react'
 import { colorFamily, fontFamily, fontSize, sizing } from '../../../utils/constant'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import EvilIcons from '@expo/vector-icons/EvilIcons';
+import { RootStackParamList } from '../../../navigation/RootStack';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 type Props = {}
 
 const DocProfile = (props: Props) => {
@@ -13,7 +16,13 @@ const DocProfile = (props: Props) => {
     .map((name) => name[0])
     .join('')
     .toUpperCase(); // Extract the initials from the name
-    
+
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+    const handleLogout = () => {
+      navigation.navigate('Login')
+    };
+  
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContainer}
@@ -66,7 +75,7 @@ const DocProfile = (props: Props) => {
               </View>  
               <AntDesign name="right" size={22} color={colorFamily.Primary} />              
              </TouchableOpacity>
-             <TouchableOpacity style={styles.buttons}>
+             <TouchableOpacity style={styles.buttons} onPress={handleLogout}>
              <View style={styles.buttonText}>
              <View style={styles.icon}>
                 <AntDesign name="logout" size={18} color={colorFamily.Primary} />

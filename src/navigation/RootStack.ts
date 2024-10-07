@@ -1,9 +1,10 @@
 import { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
+
 // Define the types for your stack's routes
 export type RootStackParamList = {
-  DocBottomNavigator: undefined;
+  BottomNavigator: undefined;
   DocHome: undefined;
   DocDocument: undefined;
   DocCalender: undefined;
@@ -24,3 +25,4 @@ export type RootStackParamList = {
 // Define types for navigation and route props
 type BookSessionScreenRouteProp = RouteProp<RootStackParamList, 'BookSession'>;
 type BookSessionScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'BookSession'>;
+
