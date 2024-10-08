@@ -92,7 +92,7 @@ export default CustomInput;
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginVertical: sizing.SPACING,
+    marginVertical: sizing.SUB_SPACING,
   },
   label: {
     fontSize: 14,

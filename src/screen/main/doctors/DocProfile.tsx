@@ -3,9 +3,9 @@ import React from 'react'
 import { colorFamily, fontFamily, fontSize, sizing } from '../../../utils/constant'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { RootStackParamList } from '../../../navigation/RootStack';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { AuthStackParamList } from '../../../navigation/AuthNavigator';
 
 type Props = {}
 
@@ -17,7 +17,7 @@ const DocProfile = (props: Props) => {
     .join('')
     .toUpperCase(); // Extract the initials from the name
 
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
     const handleLogout = () => {
       navigation.navigate('Login')
@@ -96,6 +96,8 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     padding: sizing.SPACING,
+    width: sizing.SCREEN_WIDTH,
+      height: sizing.SCREEN_HEIGHT,
   },
   scrollContainer: {
     flexGrow: 1,

@@ -1,29 +1,21 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
-import { AuthStackParamList } from "../../utils/interfer";
-import { setAuthenticated } from "../../app/slices/authSlice";
 import { colorFamily, fontFamily, sizing } from "../../utils/constant";
 import CustomInput from "../../utils/shared/CustomInput";
 import CustomButtonFilled from "../../utils/shared/CustomButtonFilled";
+import { AuthStackParamList } from "../../navigation/AuthNavigator";
 
 
 const Register = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigation<NavigationProp<AuthStackParamList>>();
-   const  [role, setRole] = useState<"professional" | "patient">("patient");
-    const handleSubmit = () => {
-      dispatch(setAuthenticated({ role}));
-      navigate.navigate("BottomNavigator");
+    const navigate = useNavigation<NavigationProp<AuthStackParamList >>();
+    const handleSubmit = () => {     
+      navigate.navigate("CompleteProfile");
     };
-    const handleForget = () => {
-      navigate.navigate("ForgottenPassword");
-    };
+    
     const handleRegister = () => {
-      navigate.navigate("OnboardSelect");
+      navigate.navigate("Login");
     };
   return (
     <SafeAreaView style={styles.container}>
@@ -44,7 +36,7 @@ const Register = () => {
         <CustomInput
         label="Email"
         placeholder="BH1123"
-        iconRight="person"
+        iconRight="email"
         inputStyle={styles.customInput}
         labelStyle={styles.labelText}
         keyboardType="email-address"
@@ -60,11 +52,7 @@ const Register = () => {
         keyboardType="visible-password"
         autoCapitalize="none"
       />
-      <View style={styles.forgetContainer}>
-        <TouchableOpacity onPress={handleForget}>
-          <Text style={styles.forget}>Forgot Password?</Text>
-        </TouchableOpacity>
-      </View>
+      
     </View>
     <CustomButtonFilled
       title="Sign In"
@@ -109,7 +97,7 @@ const styles = StyleSheet.create({
       padding: sizing.SPACING,
     },
     formContainer: {
-      marginBottom: sizing.SPACING * 2,
+      marginBottom: sizing.MINI_SPACING ,
       width: sizing.SCREEN_WIDTH,
       paddingHorizontal: sizing.SPACING * 2,
     },
@@ -120,14 +108,13 @@ const styles = StyleSheet.create({
     titleText: {
       fontSize: 22,
       fontFamily: fontFamily.Inter_600SemiBold,
-      marginBottom: 10,
       textAlign: "center",
     },
     desText: {
       fontFamily: fontFamily.Inter_300Light,
       fontSize: 16,
       textAlign: "center",
-      marginBottom: 20,
+      marginBottom: sizing.SUB_SPACING,
       color: colorFamily.Color_MAIN_Texting,
       marginHorizontal: sizing.SPACING,
     },

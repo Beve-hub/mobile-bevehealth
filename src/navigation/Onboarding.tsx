@@ -21,18 +21,17 @@ const Onboarding = () => {
     } else {
       // Set onboarding as completed and navigate to login
       dispatch(setFirstLaunch(false));
-      navigation.navigate('OnboardSelect');  // Adjust 'Login' to your actual route name
+      navigation.navigate('Login');  // Adjust 'Login' to your actual route name
     }
   };
   
 
   return (
-    <SafeAreaView style={styles.container}>
-     
+    <SafeAreaView style={styles.container}>     
         <Text style={styles.skip}
         onPress={() => {
           dispatch(setFirstLaunch(false)); // Set onboarding as completed
-          navigation.navigate('OnboardSelect'); // Navigate to the login page
+          navigation.navigate('Login'); // Navigate to the login page
         }}
         >Skip</Text>
       
