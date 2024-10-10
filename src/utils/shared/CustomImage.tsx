@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { TextInput, useTheme } from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
 
 type CustomImageProps = {
   label: string;
@@ -11,7 +11,6 @@ type CustomImageProps = {
 
 const CustomImage: React.FC<CustomImageProps> = ({ label, onImageUpload, showButton = true }) => {
   const [imageUri, setImageUri] = useState<string | null>(null);
-  const theme = useTheme();
 
   const handleImagePick = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({

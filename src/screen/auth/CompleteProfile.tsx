@@ -24,6 +24,11 @@ const CompleteProfile = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
     const  [role, setRole] = useState<"professional" | "patient">("patient");
     const [selectedOption, setSelectedOption] = useState('');
+    const [selectedSex, setSelectedSex] = useState('');
+    const [selectedDep, setSelectedDep] = useState('');
+    const [selectedRole, setSelectedRole] = useState('');
+    const [selectedGroup, setSelectedGroup] = useState('');
+
     const handleSubmit = () => {
       dispatch(setAuthenticated({ role}));
       navigation.navigate("BottomNavigator");
@@ -33,6 +38,19 @@ const CompleteProfile = () => {
     const handleSelect = (value: string) => {
       setSelectedOption(value); // Update selected option
   };
+  const handleRole = (value: string) => {
+    setSelectedRole(value); // Update selected option
+  };
+  const handleGroup = (value: string) => {
+    setSelectedGroup(value); // Update selected option
+  };
+  const handleDep = (value: string) => {
+    setSelectedDep(value); // Update selected option
+  };
+  const handleSex = (value: string) => {
+    setSelectedSex(value); // Update selected option
+  };
+  
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -42,41 +60,46 @@ const CompleteProfile = () => {
       <Text style={styles.titleText}>Complete Your Profile</Text>
       <Text style={styles.desText}>Don’t worry, only you can see your personal data.  No one else can see it. </Text>
     </View>
+
     <View style={styles.profile}>
            <View style={styles.profilePicContainer}>
            <Text style={styles.profilePicText}>{initials}</Text>
+           <Text style={styles.IconContainer}>
+            <AntDesign name="edit" size={16} color={colorFamily.Color_SUB_MAIN_Text} style={styles.Icon}/>
+           </Text>
              </View>
              <View style={styles.profileInfo}>
               <Text style={styles.names}>John Doe</Text>              
              </View>
             
-           </View>
+    </View>
+
     <View style={styles.formContainer}>
       <CustomInput
         label="Phone Number"
-        placeholder="+234 01987654"        
+            
         inputStyle={styles.customInput}
         labelStyle={styles.labelText}
         keyboardType="numeric"
         autoCapitalize="none"
       />
-      <View>
+      <View style={styles.inputContainer}>
         <Text>Sex</Text>
         <CustomSelect
-         onSelect={handleSelect}
-         value={selectedOption}
+         onSelect={handleSex}
+         value={selectedSex}
          options={['male', 'Female']}
       />
       </View>
-      <View>
+      <View style={styles.inputContainer}>
         <Text>Blood Group</Text>
         <CustomSelect
-         onSelect={handleSelect}
-         value={selectedOption}
+         onSelect={handleGroup}
+         value={selectedGroup}
          options={['o', 'o+', 'A', 'A+', 'B', 'B+']}
       />
       </View>
-      <View>
+      <View style={styles.inputContainer}>
         <Text>GenoType</Text>
         <CustomSelect
          onSelect={handleSelect}
@@ -84,19 +107,19 @@ const CompleteProfile = () => {
          options={['AA', 'AS', 'SS']}
       />
       </View>
-      <View>
+      <View style={styles.inputContainer}>
         <Text>Role</Text>
         <CustomSelect
-         onSelect={handleSelect}
-         value={selectedOption}
+         onSelect={handleRole}
+         value={selectedRole}
          options={['Patient', 'Professional']}
       />
       </View>
-      <View>
+      <View style={styles.inputContainer}>
         <Text>Department</Text>
         <CustomSelect
-         onSelect={handleSelect}
-         value={selectedOption}
+         onSelect={handleDep}
+         value={selectedDep}
          options={['General Doctor', 'Cardiologist', 'Gynecologist']}
       />
       </View>
@@ -106,7 +129,7 @@ const CompleteProfile = () => {
          <CustomButtonFilled
       title="Submit"
       onPress={handleSubmit}
-      buttonStyle={styles.button}
+      buttonStyle={{ width: sizing.SCREEN_BUTTON, paddingVertical: sizing.MINI_SPACING }}
     />
     </View>
     </View>
@@ -137,7 +160,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: sizing.SPACING * 2,
     },
     forgetContainer: {
-      marginTop: 5,
+      marginTop: sizing.SUB_SPACING,
       alignItems: "flex-end",
     },
     titleText: {
@@ -165,7 +188,7 @@ const styles = StyleSheet.create({
     customInput: {
       fontSize: 14,
       color: "#333",
-     
+      backgroundColor:colorFamily.Color_Transaparent
     },
     button: {
         width: sizing.SCREEN_BUTTON,        
@@ -176,6 +199,10 @@ const styles = StyleSheet.create({
          paddingVertical: sizing.MINI_SPACING,
          justifyContent:'center',
          alignItems: 'center', 
+         marginTop: sizing.SPACING,
+    },
+    inputContainer:{
+      marginBottom: sizing.SPACING,
     },
     registerConteiner: {
       flexDirection: "row",
@@ -239,6 +266,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: sizing.SPACING
       },
+      IconContainer:{
+        position: 'absolute',
+        right: 5,
+        bottom: 5,                
+        borderColor: colorFamily.Color_SUB_MAIN_Text, 
+        width: 25,
+        height: 25,
+        borderRadius: 100,
+        backgroundColor: colorFamily.Primary,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: sizing.SPACING
+      },
+      Icon:{ 
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
       profilePicText: {
         color: colorFamily.Color_MAIN_Text,
         fontFamily: fontFamily.Inter_600SemiBold,
@@ -247,6 +291,6 @@ const styles = StyleSheet.create({
       names: {
         color: colorFamily.Color_MAIN_Text,
         fontFamily: fontFamily.Inter_600SemiBold,
-        fontSize: fontSize.Sub_Normal,   
+        fontSize: fontSize.Sub_medium,   
       },
   });
