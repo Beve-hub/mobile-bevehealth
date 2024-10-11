@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     justifyContent:'space-between',
     alignItems: 'center',
     gap: sizing.SUB_SPACING,
-    fontFamily: fontFamily.Inter_600SemiBold,
+    fontFamily: fontFamily.Inter_500Medium,
     fontSize: fontSize.Sub_medium,
   },
   icon: {

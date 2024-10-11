@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
   title: {
     color: colorFamily.Color_MAIN_Text,
     fontFamily: fontFamily.Inter_600SemiBold,
-    fontSize: fontSize.normal,
+    fontSize: fontSize.medium,
   },
   name: {
     color: colorFamily.Color_MAIN_Text,

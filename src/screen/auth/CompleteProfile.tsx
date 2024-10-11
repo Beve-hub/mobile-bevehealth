@@ -40,12 +40,15 @@ const CompleteProfile = () => {
   };
   const handleRole = (value: string) => {
     setSelectedRole(value); // Update selected option
+    setRole(value.toLowerCase() as "professional" | "patient");
+
   };
   const handleGroup = (value: string) => {
     setSelectedGroup(value); // Update selected option
   };
   const handleDep = (value: string) => {
     setSelectedDep(value); // Update selected option
+    
   };
   const handleSex = (value: string) => {
     setSelectedSex(value); // Update selected option
@@ -54,88 +57,81 @@ const CompleteProfile = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-     <ScrollView contentContainerStyle={styles.scrollContainer}
-        showsVerticalScrollIndicator={false}>
-    <View>
-      <Text style={styles.titleText}>Complete Your Profile</Text>
-      <Text style={styles.desText}>Don’t worry, only you can see your personal data.  No one else can see it. </Text>
-    </View>
+    <ScrollView
+      contentContainerStyle={styles.scrollContainer}
+      showsVerticalScrollIndicator={false}
+    >
+      <View>
+        <Text style={styles.titleText}>Complete Your Profile</Text>
+        <Text style={styles.desText}>
+          Don’t worry, only you can see your personal data. No one else can see it.
+        </Text>
+      </View>
 
-    <View style={styles.profile}>
-           <View style={styles.profilePicContainer}>
-           <Text style={styles.profilePicText}>{initials}</Text>
-           <Text style={styles.IconContainer}>
-            <AntDesign name="edit" size={16} color={colorFamily.Color_SUB_MAIN_Text} style={styles.Icon}/>
-           </Text>
-             </View>
-             <View style={styles.profileInfo}>
-              <Text style={styles.names}>John Doe</Text>              
-             </View>
-            
-    </View>
+      <View style={styles.profile}>
+        <View style={styles.profilePicContainer}>
+          <Text style={styles.profilePicText}>{initials}</Text>
+          <Text style={styles.IconContainer}>
+            <AntDesign name="edit" size={16} color={colorFamily.Color_SUB_MAIN_Text} style={styles.Icon} />
+          </Text>
+        </View>
+        <View style={styles.profileInfo}>
+          <Text style={styles.names}>John Doe</Text>
+        </View>
+      </View>
 
-    <View style={styles.formContainer}>
-      <CustomInput
-        label="Phone Number"
-            
-        inputStyle={styles.customInput}
-        labelStyle={styles.labelText}
-        keyboardType="numeric"
-        autoCapitalize="none"
-      />
-      <View style={styles.inputContainer}>
-        <Text>Sex</Text>
-        <CustomSelect
-         onSelect={handleSex}
-         value={selectedSex}
-         options={['male', 'Female']}
-      />
+      <View style={styles.formContainer}>
+        <CustomInput
+          label="Phone Number"
+          inputStyle={styles.customInput}
+          labelStyle={styles.labelText}
+          keyboardType="numeric"
+          autoCapitalize="none"
+        />
+        <View style={styles.inputContainer}>
+          <Text>Sex</Text>
+          <CustomSelect onSelect={handleSex} value={selectedSex} options={['Male', 'Female']} />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text>Blood Group</Text>
+          <CustomSelect
+            onSelect={handleGroup}
+            value={selectedGroup}
+            options={['O', 'O+', 'A', 'A+', 'B', 'B+']}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text>GenoType</Text>
+          <CustomSelect onSelect={handleSelect} value={selectedOption} options={['AA', 'AS', 'SS']} />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text>Role</Text>
+          <CustomSelect
+            onSelect={handleRole}
+            value={selectedRole}
+            options={['Patient', 'Professional']}
+          />
+        </View>
+        {role === "professional" && (
+          <View style={styles.inputContainer}>
+            <Text>Department</Text>
+            <CustomSelect
+              onSelect={handleDep}
+              value={selectedDep}
+              options={['General Doctor', 'Cardiologist', 'Gynecologist']}
+            />
+          </View>
+        )}
+
+        <View style={styles.buttonContainer}>
+          <CustomButtonFilled
+            title="Submit"
+            onPress={handleSubmit}
+            buttonStyle={{ width: sizing.SCREEN_BUTTON, paddingVertical: sizing.MINI_SPACING }}
+          />
+        </View>
       </View>
-      <View style={styles.inputContainer}>
-        <Text>Blood Group</Text>
-        <CustomSelect
-         onSelect={handleGroup}
-         value={selectedGroup}
-         options={['o', 'o+', 'A', 'A+', 'B', 'B+']}
-      />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text>GenoType</Text>
-        <CustomSelect
-         onSelect={handleSelect}
-         value={selectedOption}
-         options={['AA', 'AS', 'SS']}
-      />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text>Role</Text>
-        <CustomSelect
-         onSelect={handleRole}
-         value={selectedRole}
-         options={['Patient', 'Professional']}
-      />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text>Department</Text>
-        <CustomSelect
-         onSelect={handleDep}
-         value={selectedDep}
-         options={['General Doctor', 'Cardiologist', 'Gynecologist']}
-      />
-      </View>
-      
-      
-      <View style={styles.buttonContainer}>
-         <CustomButtonFilled
-      title="Submit"
-      onPress={handleSubmit}
-      buttonStyle={{ width: sizing.SCREEN_BUTTON, paddingVertical: sizing.MINI_SPACING }}
-    />
-    </View>
-    </View>
-    
-   
-    </ScrollView>   
+    </ScrollView>
   </SafeAreaView>
   )
 }

@@ -125,19 +125,19 @@ const PatientDetails = () => {
      
       <View style={styles.tabContainer}>
       <TouchableOpacity 
-  onPress={() => setActiveTab('LabReport')} 
-  style={[styles.tabButton, activeTab === 'LabReport' && styles.activeTab]}>
-  <Text style={[styles.buttonTexts, activeTab === 'LabReport' && styles.activeTabText]}>
-    Lab Report
-  </Text>
-</TouchableOpacity>
-<TouchableOpacity 
-  onPress={() => setActiveTab('DoctorsReport')} 
-  style={[styles.tabButton, activeTab === 'DoctorsReport' && styles.activeTab]}>
-  <Text style={[styles.buttonTexts, activeTab === 'DoctorsReport' && styles.activeTabText]}>
-    Doctors Report
-  </Text>
-</TouchableOpacity>
+       onPress={() => setActiveTab('LabReport')} 
+       style={[styles.tabButton, activeTab === 'LabReport' && styles.activeTab]}>
+        <Text style={[styles.buttonTexts, activeTab === 'LabReport' && styles.activeTabText]}>
+          Lab Report
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+        onPress={() => setActiveTab('DoctorsReport')} 
+        style={[styles.tabButton, activeTab === 'DoctorsReport' && styles.activeTab]}>
+        <Text style={[styles.buttonTexts, activeTab === 'DoctorsReport' && styles.activeTabText]}>
+          Doctors Report
+        </Text>
+      </TouchableOpacity>
 
       </View>
 
@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
   buttons: {
     backgroundColor:colorFamily.Primary, 
     padding: sizing.MINI_SPACING,
-    borderRadius: 5,
+    borderRadius: sizing.MINI_SPACING,
     
   },
   buttonText: {
@@ -366,7 +366,6 @@ const styles = StyleSheet.create({
     width: '45%',
     justifyContent: 'center',
     alignItems: 'center',
-
   },
  
 
@@ -382,6 +381,5 @@ const styles = StyleSheet.create({
   }, 
   vitalsContainer: {
     marginBottom: sizing.SPACING,
-   
   }
 });
