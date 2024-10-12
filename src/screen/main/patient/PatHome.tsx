@@ -82,7 +82,7 @@ const PatHome = (props: Props) => {
               <Text style={styles.text}>Your health is our Priority, stay alive</Text>
             </View>
             <TouchableOpacity style={styles.Button}>
-              <Text style={styles.Name}>Membership ID</Text>
+              <Text style={styles.Name}>Book Session</Text>
             </TouchableOpacity>
           </View>
         </LinearGradient>

@@ -16,7 +16,7 @@ const CustomCalendar = () => {
 
   const onDateChange = (date: Date) => {
     setSelectedStartDate(date);
-    navigation.navigate('BookSession', { selectedDate: date }); // Pass the date correctly
+    navigation.navigate('BookSession'); // Pass the date correctly
   };
 
   return (

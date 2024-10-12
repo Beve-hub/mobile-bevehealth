@@ -17,6 +17,7 @@ import { RootStackParamList } from './RootStack';
 import CustomCall from '../utils/shared/CustomCall';
 import CustomVideo from '../utils/shared/CustomVideo';
 import PatientDetails from '../screen/main/doctors/PatientDetails';
+import DocDetails from '../screen/main/patient/DocDetails';
 
 // Use the type in your Stack.Navigator
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -33,15 +34,11 @@ const AppScreens = () => {
     >
       <Stack.Screen name="PatHome" component={PatHome} />
       <Stack.Screen name="BottomNavigator" component={DocBottomNavigator} options={{ headerShown: false }} />
-      
       <Stack.Screen name="DocHome" component={DocHome} />
       <Stack.Screen name="DocDocument" component={DocDocument} />
       <Stack.Screen name="DocCalender" component={DocCalender} />
       <Stack.Screen name="CustomChat" component={CustomChat} />
       <Stack.Screen name="DocProfile" component={DocProfile} />
-      
-      <Stack.Screen name="PatDocument" component={PatDocument} />
-      <Stack.Screen name="PatCalender" component={PatCalender} />
       <Stack.Screen name="PatChat" component={PatChat} />
       <Stack.Screen name="PatProfile" component={PatProfile} />
       <Stack.Screen name="ChatBox" component={ChatBox} options={{ headerShown: false }} />
@@ -49,6 +46,10 @@ const AppScreens = () => {
       <Stack.Screen name="Call" component={CustomCall} options={{ headerShown: false }} />
       <Stack.Screen name="Video" component={CustomVideo} options={{ headerShown: false }} />
       <Stack.Screen name="PatDetails" component={PatientDetails} options={{ headerShown: false }} />
+      <Stack.Screen name="DocDetails" component={DocDetails} options={{ headerShown: false }} />
+      <Stack.Screen name="PatDocument" component={PatDocument} />
+      <Stack.Screen name="PatCalender" component={PatCalender} />
+      
     </Stack.Navigator>
   );
 };

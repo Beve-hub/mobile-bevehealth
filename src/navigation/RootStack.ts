@@ -18,8 +18,9 @@ export type RootStackParamList = {
   ChatBox: undefined;
   Call: undefined;
   PatDetails:{ documentData: any };
+  DocDetails:{ documentData: any };
   Video: undefined;
-  BookSession: { selectedDate: Date }; // Specify the route with its parameter
+  BookSession: undefined; // Specify the route with its parameter
 };
 
 // Define types for navigation and route props

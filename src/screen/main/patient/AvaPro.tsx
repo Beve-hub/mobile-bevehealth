@@ -1,6 +1,9 @@
-import { StyleSheet, Text, View, FlatList, ListRenderItem } from 'react-native';
+import { StyleSheet, Text, View, FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { fontFamily, fontSize, sizing } from '../../../utils/constant';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../navigation/RootStack';
 
 interface Doctor {
   name: string;
@@ -15,7 +18,12 @@ const data: Doctor[] = [
   { name: 'Dr. Dan', pro: 'Pharmacist' },
 ];
 
+// Define the navigation prop with the correct type
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'DocDetails'>;
+
 const AvaPro = () => {
+  const navigation = useNavigation<NavigationProp>();
+
   const renderCard: ListRenderItem<Doctor> = ({ item }) => {
     const initials = item.name
       .split(' ')
@@ -24,13 +32,18 @@ const AvaPro = () => {
       .toUpperCase();
 
     return (
-      <View style={styles.card}>
+      <TouchableOpacity
+        style={styles.card}
+        onPress={() => 
+          navigation.navigate('DocDetails', { documentData: item }) // Ensure you pass the route name and params correctly
+        }
+      >
         <View style={styles.initialsContainer}>
           <Text style={styles.initialsText}>{initials}</Text>
         </View>
         <Text style={styles.nameText}>{item.name}</Text>
         <Text style={styles.proText}>{item.pro}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -51,19 +64,19 @@ export default AvaPro;
 
 const styles = StyleSheet.create({
   container: {
-    height: 120, // Adjust the height to fit the scrollable area
+    height: 120,
     paddingVertical: sizing.SUB_SPACING,
-    marginVertical:sizing.MINI_SPACING
+    marginVertical: sizing.MINI_SPACING,
   },
   card: {
-    width: 80, // Compact width
-    height: 100, // Compact height
+    width: 80,
+    height: 100,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: sizing.SUB_SPACING,
     paddingVertical: sizing.SUB_SPACING,
-    backgroundColor: '#f5f5f5', // Optional: background color for each card
+    backgroundColor: '#f5f5f5',
   },
   initialsContainer: {
     backgroundColor: '#6200ea',
