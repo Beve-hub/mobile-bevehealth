@@ -120,6 +120,8 @@ const PatientDetails = () => {
             ))}
           </ScrollView>
         </View>
+
+        
         <View >
          
      

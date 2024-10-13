@@ -8,14 +8,19 @@ import { RootStackParamList } from '../../../navigation/RootStack';
 interface Doctor {
   name: string;
   pro: string;
+  patient: number;
+  exp: number;
+  rate: string;
+  location: string;
+  state: string;
 }
 
 const data: Doctor[] = [
-  { name: 'Dr. David', pro: 'Surgeon' },
-  { name: 'Dr. Domi', pro: 'Medical Lab' },
-  { name: 'Dr. Janet', pro: 'Optician' },
-  { name: 'Dr. Sarah', pro: 'Pharmacist' },
-  { name: 'Dr. Dan', pro: 'Pharmacist' },
+  { name: 'Dr. David', pro: 'Surgeon', patient: 100, exp:5, rate: '4.5', location: 'ikoyi' , state: 'lagos'},
+  { name: 'Dr. Domi', pro: 'Medical Lab',patient: 100, exp:5,rate: '4.5', location: 'ikoyi', state: 'lagos' },
+  { name: 'Dr. Janet', pro: 'Optician',patient: 100, exp:5,rate: '4.5', location: 'ikoyi' , state: 'lagos'},
+  { name: 'Dr. Sarah', pro: 'Pharmacist',patient: 100, exp:5,rate: '4.5', location: 'ikoyi' , state: 'lagos'},
+  { name: 'Dr. Dan', pro: 'Pharmacist',patient: 100, exp:5,rate: '4.5', location: 'ikoyi', state: 'lagos' },
 ];
 
 // Define the navigation prop with the correct type
