@@ -55,16 +55,9 @@ const DocDetails = () => {
     .join('')
     .substring(0, 2);
 
-  const getRandomColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
+  
 
-  const randomColor = useMemo(() => getRandomColor(), []);
+ 
 
   const handleBookSession = () => {
     navigation.navigate('BookSession'); // Navigate to CustomBookings screen
@@ -81,7 +74,7 @@ const DocDetails = () => {
 
       <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
       <View style={styles.content}>
-          <View style={[styles.profilePic, { backgroundColor: randomColor }]}>
+          <View style={[styles.profilePic, { backgroundColor: colorFamily.Color_Main }]}>
             <Text style={styles.initials}>{initials}</Text>
           </View>
           <View style={styles.detail}>
@@ -102,7 +95,7 @@ const DocDetails = () => {
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.vitalsScroll}>
             <View style={styles.vitalItem}>
             <View style={styles.icon}>
-              <FontAwesome6 name="user-group" size={18} color={colorFamily.Primary} />
+              <FontAwesome6 name="user-group" size={16} color={colorFamily.Primary} />
             </View>
                 <Text style={styles.vitalTitle}>Patient</Text>
                 <Text style={styles.vitalValue}>{documentData.patient}</Text>
@@ -110,7 +103,7 @@ const DocDetails = () => {
 
             <View style={styles.vitalItem}>
             <View style={styles.icon}>
-              <MaterialCommunityIcons name="medical-bag" size={28} color={colorFamily.Primary} />
+              <MaterialCommunityIcons name="medical-bag" size={22} color={colorFamily.Primary} />
             </View>
                 <Text style={styles.vitalTitle}>Years of Exp</Text>
                 <Text style={styles.vitalValue}>{documentData.exp}</Text>
@@ -118,7 +111,7 @@ const DocDetails = () => {
 
             <View style={styles.vitalItem}>
             <View style={styles.icon}>
-              <Fontisto name="star" size={22} color={colorFamily.Primary} />
+              <Fontisto name="star" size={18} color={colorFamily.Primary} />
             </View>
                 <Text style={styles.vitalTitle}>Rating</Text>
                 <Text style={styles.vitalValue}>{documentData.rate}</Text>
@@ -129,14 +122,14 @@ const DocDetails = () => {
               <MaterialIcons name="location-on" size={28} color={colorFamily.Primary} />
             </View>
                 <Text style={styles.vitalTitle}>Patient</Text>
-                <Text style={styles.vitalValue}>{documentData.location} {documentData.state}</Text>
+                <Text style={styles.vitalValue}>{documentData.location}, {documentData.state}</Text>
             </View>
           </ScrollView>
         </View>
 
-        <View style={styles.scheduleContainer}>
+        <View >
           <Text style={styles.scheduleTitle}>Schedule</Text>
-          <View >
+          <View style={styles.scheduleContainer}>
             {availabe.map((item, index) => (
               <View key={index} style={styles.scheduleItem}>
                 <Text >{item.day}</Text>
@@ -243,27 +236,34 @@ const styles = StyleSheet.create({
     color: colorFamily.Color_MAIN_Texting,
   },
   vitalValue: {
-    fontSize: fontSize.medium,
+    fontSize: fontSize.Sub_small,
     color: colorFamily.Color_MAIN_Text,
     fontFamily: fontFamily.Inter_500Medium,
   },
   vitalsContainer: {
     marginBottom: sizing.SPACING,
+
   },
 scheduleTitle: {
   fontFamily: fontFamily.Inter_700Bold,
   fontSize: fontSize.normal,
+  marginVertical: sizing.SPACING,
 },
 scheduleContainer: {
-  marginTop: sizing.SPACING,
+  marginVertical: sizing.SPACING,
 },
+
 scheduleItem: {
   flexDirection: 'row',
   justifyContent:'space-between',
-  gap: sizing.SPACING,
+  marginBottom: sizing.SPACING,
+  borderBottomWidth: 1,
+  paddingBottom: sizing.SUB_SPACING,
+  borderColor: colorFamily.Color_Main,
 },
 scheduleTime: {
   backgroundColor: colorFamily.Color_Main,
-  borderRadius: sizing.MINI_SPACING
+  borderRadius: sizing.MINI_SPACING,
+  paddingHorizontal: sizing.MINI_SPACING
 }
 });

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { fontFamily, fontSize, sizing } from '../../../utils/constant';
+import { colorFamily, fontFamily, fontSize, sizing } from '../../../utils/constant';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/RootStack';
@@ -75,25 +75,24 @@ const styles = StyleSheet.create({
   },
   card: {
     width: 80,
-    height: 100,
+    height:120,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: sizing.SUB_SPACING,
-    paddingVertical: sizing.SUB_SPACING,
+    paddingVertical: sizing.SPACING,
     backgroundColor: '#f5f5f5',
   },
   initialsContainer: {
-    backgroundColor: '#6200ea',
+    backgroundColor: colorFamily.Color_Main,
     borderRadius: 50,
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: sizing.SPACING,
   },
   initialsText: {
-    color: '#fff',
     fontSize: fontSize.Sub_medium,
     fontFamily: fontFamily.Inter_600SemiBold,
   },

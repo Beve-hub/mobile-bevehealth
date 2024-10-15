@@ -8,7 +8,6 @@ import DocProfile from '../screen/main/doctors/DocProfile';
 import PatHome from '../screen/main/patient/PatHome';
 import PatDocument from '../screen/main/patient/PatDocument';
 import PatCalender from '../screen/main/patient/PatCalender';
-import PatChat from '../screen/main/patient/PatChat';
 import PatProfile from '../screen/main/patient/PatProfile';
 import CustomChat from './../utils/shared/CustomChat';
 import ChatBox from '../utils/shared/ChatBox';
@@ -32,15 +31,14 @@ const AppScreens = () => {
         animation: 'slide_from_right',
       }}
     >
+      <Stack.Screen name="PatProfile" component={PatProfile} />
       <Stack.Screen name="PatHome" component={PatHome} />
       <Stack.Screen name="BottomNavigator" component={DocBottomNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="DocHome" component={DocHome} />
       <Stack.Screen name="DocDocument" component={DocDocument} />
       <Stack.Screen name="DocCalender" component={DocCalender} />
       <Stack.Screen name="CustomChat" component={CustomChat} />
-      <Stack.Screen name="DocProfile" component={DocProfile} />
-      <Stack.Screen name="PatChat" component={PatChat} />
-      <Stack.Screen name="PatProfile" component={PatProfile} />
+      <Stack.Screen name="DocProfile" component={DocProfile} />      
       <Stack.Screen name="ChatBox" component={ChatBox} options={{ headerShown: false }} />
       <Stack.Screen name="BookSession" component={CustomBookings} options={{ headerShown: false }} />
       <Stack.Screen name="Call" component={CustomCall} options={{ headerShown: false }} />

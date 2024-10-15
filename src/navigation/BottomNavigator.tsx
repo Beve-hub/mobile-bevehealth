@@ -13,7 +13,6 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { colorFamily } from '../utils/constant';
 import PatHome from '../screen/main/patient/PatHome';
 import PatDocument from '../screen/main/patient/PatDocument';
-import PatChat from '../screen/main/patient/PatChat';
 import PatCalender from '../screen/main/patient/PatCalender';
 import PatProfile from '../screen/main/patient/PatProfile';
 
@@ -63,7 +62,7 @@ const BottomNavigator: React.FC = () => {
   const renderScenePatient = BottomNavigation.SceneMap({
     home: PatHome,
     documents: PatDocument,
-    chat: PatChat, // Separate chat component if needed
+    chat: DocChat, 
     calendar: PatCalender,
     profile: PatProfile,
   });

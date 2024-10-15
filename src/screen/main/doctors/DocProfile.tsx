@@ -64,7 +64,7 @@ const DocProfile = (props: Props) => {
                 </View>              
               <Text style={styles.buttonText}>Help</Text>
               </View>
-              <AntDesign name="right" size={22} color={colorFamily.Primary} />
+             
              </TouchableOpacity>
              <TouchableOpacity style={styles.button}>
               <View style={styles.buttonText}>
@@ -73,7 +73,7 @@ const DocProfile = (props: Props) => {
                 </View>              
               <Text style={styles.buttonText}>Privacy Policy</Text>
               </View>  
-              <AntDesign name="right" size={22} color={colorFamily.Primary} />              
+                         
              </TouchableOpacity>
              <TouchableOpacity style={styles.buttons} onPress={handleLogout}>
              <View style={styles.buttonText}>
