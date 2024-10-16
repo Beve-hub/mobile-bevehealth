@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: sizing.SPACING,
     width: sizing.SCREEN_WIDTH,
-      height: sizing.SCREEN_HEIGHT,
+    height: sizing.SCREEN_HEIGHT,
   },
   scrollContainer: {
     flexGrow: 1,

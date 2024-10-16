@@ -10,6 +10,7 @@ export const sizing = {
   SCREEN_WIDTH: width,
   SCREEN_HEIGHT: height,
   SCREEN_INPUT: width - 20,
+  SCREEN_INPUTS: width - 40,
   SCREEN_BUTTON: width - 80,
   STATUSBARHEIGHT: Constants.statusBarHeight,
 };

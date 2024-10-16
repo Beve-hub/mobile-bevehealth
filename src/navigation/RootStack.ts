@@ -20,7 +20,10 @@ export type RootStackParamList = {
   PatDetails:{ documentData: any };
   DocDetails:{ documentData: any };
   Video: undefined;
-  BookSession: undefined; // Specify the route with its parameter
+  BookSession: undefined;
+  CustomProfile: { initials: string }; 
+  CustomSetting: undefined;
+  CustomChange: undefined;
 };
 
 // Define types for navigation and route props
