@@ -58,7 +58,7 @@ const CustomChat: React.FC = () => {
       </View>
 
       {/* AI Bot */}
-      <TouchableOpacity style={styles.botContainer}>
+      <TouchableOpacity style={styles.botContainer} onPress={() => handleSelectUser('Dominica')}>
         <View style={styles.botContnet}>          
         <Feather name="triangle" size={24} color={colorFamily.Color_Red} />
         <View>

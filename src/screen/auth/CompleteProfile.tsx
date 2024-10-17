@@ -10,6 +10,7 @@ import CustomInput from "../../utils/shared/CustomInput";
 import CustomButtonFilled from "../../utils/shared/CustomButtonFilled";
 import { RootStackParamList } from "../../navigation/RootStack";
 import CustomSelect from "../../utils/shared/CustomSelect";
+import * as ImagePicker from 'expo-image-picker';
 
 
 const CompleteProfile = () => {
@@ -28,6 +29,29 @@ const CompleteProfile = () => {
     const [selectedDep, setSelectedDep] = useState('');
     const [selectedRole, setSelectedRole] = useState('');
     const [selectedGroup, setSelectedGroup] = useState('');
+    const [profileImage, setProfileImage] = useState<string | null>(null);  // State to hold selected image
+
+  const pickImage = async () => {
+    // Request permission to access the gallery
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (permissionResult.granted === false) {
+      alert('Permission to access gallery is required!');
+      return;
+    }
+
+    // Open the image picker
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!result.canceled && result.assets) {
+      // Set the selected image URI to state
+      setProfileImage(result.assets[0].uri);
+    }
+  };
 
     const handleSubmit = () => {
       dispatch(setAuthenticated({ role}));
@@ -70,13 +94,20 @@ const CompleteProfile = () => {
 
       <View style={styles.profile}>
         <View style={styles.profilePicContainer}>
-          <Text style={styles.profilePicText}>{initials}</Text>
-          <Text style={styles.IconContainer}>
+        {profileImage ? (
+              <Image source={{ uri: profileImage }} style={styles.profileImage} />
+            ) : (
+              <Text style={styles.profilePicText}>{initials}</Text>
+            )}
+          
+          <TouchableOpacity style={styles.IconContainer} onPress={pickImage}>
             <AntDesign name="edit" size={16} color={colorFamily.Color_SUB_MAIN_Text} style={styles.Icon} />
-          </Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.profileInfo}>
-          <Text style={styles.names}>John Doe</Text>
+        
+           
+          
         </View>
       </View>
 
@@ -288,5 +319,18 @@ const styles = StyleSheet.create({
         color: colorFamily.Color_MAIN_Text,
         fontFamily: fontFamily.Inter_600SemiBold,
         fontSize: fontSize.Sub_medium,   
+      },
+      profileImage: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 100,
+      },
+      editIcon: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 5,
       },
   });

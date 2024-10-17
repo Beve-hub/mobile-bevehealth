@@ -36,6 +36,10 @@ const initialState: ChatStateType = {
       { type: 'audio', content: 'path_to_audio.mp3', sender: 'user' },
       { type: 'audio', content: 'path_to_audio.mp3', sender: 'receiver' }
     ],
+    "Dominica": [
+      { type: 'text', content: 'Hi, I am Dominica, your AI chat bot!', sender: 'receiver' },
+      { type: 'text', content: 'How are you doing today? And How may i be of help?', sender: 'receiver' },
+    ],
   },
 };
 
@@ -55,6 +59,15 @@ const chatSlice = createSlice({
         state.messages[userId] = [];
       }
       state.messages[userId].push(message);
+
+
+      if (userId === 'Dominica' && message.sender === 'user') {
+        state.messages['Dominica'].push({
+          type: 'text',
+          content: "I'm Dominica, here to assist you!",
+          sender: 'receiver',
+        });
+      }
     },
   },
 });

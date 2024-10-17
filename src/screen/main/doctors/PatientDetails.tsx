@@ -167,7 +167,7 @@ const PatientDetails = () => {
             <Text style={styles.modalTitle}>New Report Upload</Text>
             <CustomInput label='Specialist Name'  />
             <CustomInput label='Report Type'  />
-            <CustomImage label="Profile Picture" onImageUpload={handleImageUpload} />
+            <CustomImage label="Add Image" onImageUpload={handleImageUpload} />
             <CustomInput label='Observation'  />
             
             <View style={styles.modalActions}>

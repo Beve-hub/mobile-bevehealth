@@ -44,6 +44,7 @@ const Profile = (props: Props) => {
         showsVerticalScrollIndicator={false}
       >
         <Text style={styles.name}>Profile</Text>
+        
         <View style={styles.profile}>
           <View style={styles.profilePicContainer}>
             <Text style={styles.profilePicText}>{initials}</Text>
@@ -53,6 +54,7 @@ const Profile = (props: Props) => {
             <Text style={styles.email}>johndoe@example.com</Text>
           </View>
         </View>
+
         <View>
           <TouchableOpacity
             style={styles.button}
